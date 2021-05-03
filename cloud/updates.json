@@ -1,0 +1,14 @@
+{
+  "update-src": {
+    "github": "https://github.com/Pugga12/Addypug_Discord_Utils",
+    "3rd-party-web": "https://addypug.com/projects/apu"
+  },
+  "recommended-is-latest": true,
+  "recommended-release": {
+    "v1.2.5_101": "Changelog: Update upstream"
+},
+  "latest-release": {
+    "v1.2.5_101": "Changelog: Update Upstream",
+    "is-stable": true
+  }
+}

@@ -1,0 +1,9 @@
+/.gradle/
+/build/
+/.env
+/db.json
+/config.json
+/enterprise/
+
+/dropped-features/
+/.idea/
