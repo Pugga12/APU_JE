@@ -24,7 +24,7 @@ public class info extends ListenerAdapter {
             MessageChannel channel = event.getChannel();
             ebd.setColor(Color.red);
             ebd.addField("About This Bot", "APU is a modular discord bot made in JDA", true);
-            ebd.addField("Support", "Source Code & Updates: https://github.com/Pugga12/APU\nReport Issues: https://github.com/Pugga12/APU/issues\nPrivacy Policy and Other Legal Documents: https://www.addypug.com/projects/apu/legal", true);
+            ebd.addField("Support", "Source Code & Updates: https://github.com/Pugga12/APU_JE\nReport Issues: https://github.com/Pugga12/APU_JE/issues\nPrivacy Policy and Other Legal Documents: https://www.addypug.com/projects/apu/legal", true);
             ebd.setFooter("AddyPug's Utilities v1.2.5_101");
 
             channel.sendMessage(ebd.build()).queue();
