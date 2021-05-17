@@ -24,7 +24,7 @@ public class gameSelect_error extends ListenerAdapter {
             ebd.setTitle("Command Dropped or Under Construction");
             ebd.setColor(Color.blue);
             ebd.addField("", "This command has been dropped or is under construction (Error P807)", true);
-            ebd.setFooter("Please do not report this issue to the developers");
+            ebd.setFooter("Please do not report this issue to the developers\nAddyPug's Utilities Experimental (Build 1)\nThis build is experimental and may be unstable. Please tag your issues with branch:@experimental_features if a bug is found");
             channel.sendMessage(ebd.build()).queue();
             logger.warn("P807 Error triggered by user (UserEnd Error)");
         }

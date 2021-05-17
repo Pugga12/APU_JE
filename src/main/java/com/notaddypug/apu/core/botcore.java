@@ -22,7 +22,7 @@ public class botcore {
         shardBuilder.addEventListeners(new WishYouLuckCmdListener());
         shardBuilder.addEventListeners(new gameSelect_error());
         shardBuilder.addEventListeners(new info());
-        shardBuilder.setActivity(Activity.playing("apu!help for help"));
+        shardBuilder.setActivity(Activity.playing("apu!help for help | Experimental Build"));
         logger.info("Beginning Sharding!");
         for (int i = 0; i < 3; i++)
 

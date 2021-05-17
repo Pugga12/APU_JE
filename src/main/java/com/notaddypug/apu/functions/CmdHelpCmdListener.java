@@ -24,8 +24,7 @@ public class CmdHelpCmdListener extends ListenerAdapter{
             ebd.setTitle("APU Help");
             ebd.setColor(Color.red);
             ebd.addField("General Commands (can be used by everyone)", "apu!secrets <name>: Use a secret provided by the dev\n1 secret available\napu!help: Open the APU help menu\napu!info: Show bot info", false);
-            ebd.setFooter("AddyPug's Utilities v1.2.5_101");
-
+            ebd.setFooter("AddyPug's Utilities Experimental (Build 1)\nThis build is experimental and may be unstable. Please tag your issues with branch:@experimental_features if a bug is found");
             channel.sendMessage(ebd.build()).queue();
             logger.info("Command 'help' executed");
 
