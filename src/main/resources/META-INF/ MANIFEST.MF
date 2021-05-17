@@ -4,4 +4,4 @@ jar: {
                 'Main-Class': 'com.notaddypug.apu.core.botcore'
         )
     }
-}
+}:
