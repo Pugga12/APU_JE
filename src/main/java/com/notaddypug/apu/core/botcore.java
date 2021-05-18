@@ -6,7 +6,6 @@ import com.notaddypug.apu.functions.games.gameSelect_error;
 import com.notaddypug.apu.functions.info;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.utils.SessionController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,10 +22,11 @@ public class botcore {
         shardBuilder.addEventListeners(new gameSelect_error());
         shardBuilder.addEventListeners(new info());
         shardBuilder.setActivity(Activity.playing("apu!help for help"));
-        logger.info("Beginning Sharding!");
-        for (int i = 0; i < 3; i++)
+        int shardinteger = Integer.parseInt(CfgHandler.get("shardint"));
+        logger.info("Beginning Sharding! Shards to initialize: " + shardinteger);
+        for (int i = 0; i < shardinteger; i++)
 
-            shardBuilder.useSharding(i, 3)
+            shardBuilder.useSharding(i, shardinteger)
                     .build();
         logger.info("Sharding complete!");
     }
