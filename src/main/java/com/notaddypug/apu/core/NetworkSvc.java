@@ -7,6 +7,6 @@ import org.slf4j.LoggerFactory;
 
 public class NetworkSvc {
     Logger logger = LoggerFactory.getLogger(NetworkSvc.class);
-    public static String internalv = "0.2.5_103";
+    String vr = botcore.version;
 
 }
