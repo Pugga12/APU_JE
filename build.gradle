@@ -8,7 +8,7 @@ println('System Info: Java Version: ' + System.getProperty('java.version') + ', 
 
 
 version '0.2.5_103'
-def jdaVersion = '4.2.1_253'
+def jdaVersion = '4.2.1_265'
 
 sourceCompatibility = targetCompatibility = 1.8
 
