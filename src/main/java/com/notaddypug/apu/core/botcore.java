@@ -17,7 +17,7 @@ import java.awt.*;
 public class botcore extends ListenerAdapter {
     public static final String branch = "experimental_features";
     public static final String stability = "Unstable"; // 
-    public static final String version = "e1.8.3";
+    public static final String version = "e0.8.4";
     public static final String base = "Based on Stable 0.2.5"; // this should be blank if not on experimental branch
     public static final String stability_msg = "This build is experimental and may be unstable. Please tag your issues with branch:@experimental_features if a bug is found"; // this should be blank if not on experimental branch
 
@@ -43,19 +43,17 @@ public class botcore extends ListenerAdapter {
                 new CommandData("info", "Get info about this bot")
         );
         cmds.queue();
-
     }
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
         if (event.getGuild() == null) return;
         if (event.getName().equals("info")) {
-                event.deferReply(true).queue();
                 EmbedBuilder ebd = new EmbedBuilder();
                 ebd.setColor(Color.red);
                 ebd.addField("About This Bot", "APU is a modular discord bot made in JDA", true);
                 ebd.addField("Support", "Source Code & Updates (for experimental branch): https://github.com/Pugga12/APU_JE/tree/experimental_features\nReport Issues: https://github.com/Pugga12/APU_JE/issues\nPrivacy Policy and Other Legal Documents: https://www.addypug.com/projects/apu/legal", true);
                 ebd.setFooter("AddyPug's Utilities Experimental " + version + "\n" + stability_msg);
-                event.replyEmbeds(ebd.build()).setEphemeral(true).queue();
+                event.replyEmbeds(ebd.build()).setEphemeral(false).queue();
         }
     }
 }
