@@ -22,9 +22,9 @@ public class CmdHelpCmdListener extends ListenerAdapter{
             EmbedBuilder ebd = new EmbedBuilder();
             MessageChannel channel = event.getChannel();
             ebd.setTitle("APU Help");
-            ebd.setColor(Color.red);
+            ebd.setColor(Color.green);
             ebd.addField("General Commands (can be used by everyone)", "apu!secrets <name>: Use a secret provided by the dev\n1 secret available\napu!help: Open the APU help menu\napu!info: Show bot info", false);
-            ebd.setFooter("AddyPug's Utilities v1.2.5_101");
+            ebd.setFooter("AddyPug's Utilities v0.2.5_121");
 
             channel.sendMessage(ebd.build()).queue();
             logger.info("Command 'help' executed");

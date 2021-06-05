@@ -22,10 +22,10 @@ public class info extends ListenerAdapter {
         {
             EmbedBuilder ebd = new EmbedBuilder();
             MessageChannel channel = event.getChannel();
-            ebd.setColor(Color.red);
+            ebd.setColor(Color.green);
             ebd.addField("About This Bot", "APU is a modular discord bot made in JDA", true);
             ebd.addField("Support", "Source Code & Updates: https://github.com/Pugga12/APU_JE\nReport Issues: https://github.com/Pugga12/APU_JE/issues\nPrivacy Policy and Other Legal Documents: https://www.addypug.com/projects/apu/legal", true);
-            ebd.setFooter("AddyPug's Utilities v1.2.5_101");
+            ebd.setFooter("AddyPug's Utilities v0.2.5_121");
 
             channel.sendMessage(ebd.build()).queue();
             logger.info("Command 'info' executed");

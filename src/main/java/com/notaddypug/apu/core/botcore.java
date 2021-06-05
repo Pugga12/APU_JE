@@ -4,7 +4,9 @@ import com.notaddypug.apu.functions.CmdHelpCmdListener;
 import com.notaddypug.apu.functions.WishYouLuckCmdListener;
 import com.notaddypug.apu.functions.games.gameSelect_error;
 import com.notaddypug.apu.functions.info;
+import com.notaddypug.apu.wrap.Meta;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.JDAInfo;
 import net.dv8tion.jda.api.entities.Activity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +16,8 @@ public class botcore {
 
     public static void main(String[] arguments) throws Exception
     {
+        System.out.println("Build Info: Version " + Meta.version + "_" + Meta.build +" (" + Meta.stability + ", Built on JDA "  + JDAInfo.VERSION + ") @ branch " + Meta.branch);
+        System.out.println(Meta.stability_msg);
         Logger logger = LoggerFactory.getLogger(botcore.class);
         logger.info("Instance is now launching! Due to sharding, loading may take a while!");
         JDABuilder shardBuilder = JDABuilder.createDefault(CfgHandler.get("token"));

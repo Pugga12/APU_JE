@@ -5,10 +5,11 @@
   },
   "recommended-is-latest": true,
   "recommended-release": {
-    "v1.2.5_101": "Changelog: Update upstream"
+    "v0.2.5_121": "Changelog: Update upstream",
+    "is-stable": true
 },
   "latest-release": {
-    "v1.2.5_101": "Changelog: Update Upstream",
+    "v0.2.5_121": "Changelog: Update Upstream",
     "is-stable": true
   }
 }
