@@ -1,4 +1,4 @@
-package com.notaddypug.apu.functions.games;
+package com.addypug.apu.functions;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Message;
@@ -7,25 +7,29 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.awt.*;
 
 
-public class gameSelect_error extends ListenerAdapter {
-    Logger logger = LoggerFactory.getLogger(gameSelect_error.class);
+public class info extends ListenerAdapter {
+    Logger logger = LoggerFactory.getLogger(info.class);
+
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         if (event.getAuthor().isBot()) return;
         Message message = event.getMessage();
         String content = message.getContentRaw();
-        if (content.equals("apu!games")) {
+        if (content.equals("apu!info")) {
             EmbedBuilder ebd = new EmbedBuilder();
             MessageChannel channel = event.getChannel();
-            ebd.setTitle("Command Dropped or Under Construction");
-            ebd.setColor(Color.blue);
-            ebd.addField("", "This command has been dropped or is under construction (Error P807)", true);
-            ebd.setFooter("Please do not report this issue to the developers");
+            ebd.setColor(Color.green);
+            ebd.addField("About This Bot", "APU is a modular discord bot made in JDA", true);
+            ebd.addField("Support", "Source Code & Updates: https://github.com/Pugga12/APU_JE\nReport Issues: https://github.com/Pugga12/APU_JE/issues\nPrivacy Policy and Other Legal Documents: https://www.addypug.com/projects/apu/legal", true);
+            ebd.setFooter("AddyPug's Utilities v0.2.5_121");
+
             channel.sendMessage(ebd.build()).queue();
-            logger.warn("P807 Error triggered by user (UserEnd Error)");
+            logger.info("Command 'info' executed");
+
         }
-}
+    }
 }

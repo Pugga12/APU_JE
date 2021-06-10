@@ -1,4 +1,4 @@
-package com.notaddypug.apu.core;
+package com.addypug.apu.core;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

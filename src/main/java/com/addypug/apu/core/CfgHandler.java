@@ -1,4 +1,4 @@
-package com.notaddypug.apu.core;
+package com.addypug.apu.core;
 
 import io.github.cdimascio.dotenv.Dotenv;
 

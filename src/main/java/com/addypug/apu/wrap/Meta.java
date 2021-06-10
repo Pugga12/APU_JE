@@ -1,4 +1,4 @@
-package com.notaddypug.apu.wrap;
+package com.addypug.apu.wrap;
 
 public class Meta {
     /**

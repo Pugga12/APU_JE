@@ -1,4 +1,4 @@
-package com.notaddypug.apu.functions;
+package com.addypug.apu.functions;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Message;
@@ -11,25 +11,27 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 
 
-public class info extends ListenerAdapter {
-    Logger logger = LoggerFactory.getLogger(info.class);
+public class CmdHelpCmdListener extends ListenerAdapter {
+    Logger logger = LoggerFactory.getLogger(CmdHelpCmdListener.class);
+
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         if (event.getAuthor().isBot()) return;
         Message message = event.getMessage();
         String content = message.getContentRaw();
-        if (content.equals("apu!info"))
-        {
+        if (content.equals("apu!help")) {
             EmbedBuilder ebd = new EmbedBuilder();
             MessageChannel channel = event.getChannel();
+            ebd.setTitle("APU Help");
             ebd.setColor(Color.green);
-            ebd.addField("About This Bot", "APU is a modular discord bot made in JDA", true);
-            ebd.addField("Support", "Source Code & Updates: https://github.com/Pugga12/APU_JE\nReport Issues: https://github.com/Pugga12/APU_JE/issues\nPrivacy Policy and Other Legal Documents: https://www.addypug.com/projects/apu/legal", true);
+            ebd.addField("General Commands (can be used by everyone)", "apu!secrets <name>: Use a secret provided by the dev\n1 secret available\napu!help: Open the APU help menu\napu!info: Show bot info", false);
             ebd.setFooter("AddyPug's Utilities v0.2.5_121");
 
             channel.sendMessage(ebd.build()).queue();
-            logger.info("Command 'info' executed");
+            logger.info("Command 'help' executed");
 
+        }
     }
-}
+
+
 }

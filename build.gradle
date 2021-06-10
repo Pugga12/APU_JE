@@ -3,7 +3,7 @@ plugins {
     id'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
-mainClassName = 'com.notaddypug.apu.core.botcore'
+mainClassName = 'io.addypug.apu.core.botcore'
 
 
 version '0.2.5_121'
@@ -27,6 +27,13 @@ dependencies {
     implementation (group: 'org.json', name: 'json', version: '20210307')
     implementation ('com.sedmelluq:lavaplayer:1.3.77')
     implementation ('com.zaxxer:HikariCP:4.0.3')
+}
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'com.addypug.apu.core.botcore'
+        )
+    }
 }
 
 
