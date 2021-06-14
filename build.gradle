@@ -3,9 +3,8 @@ plugins {
     id'application'
     id'com.github.johnrengelman.shadow' version '5.2.0'
 }
-mainClassName = 'com.addypug.apu.core.main'
+mainClassName = 'com.addypug.apu.core.core'
 version '0.2.6_pre1.4'
-def jdaVersion = '4.2.1_276'
 
 sourceCompatibility = targetCompatibility = 1.8
 
@@ -16,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    implementation ("net.dv8tion:JDA:$jdaVersion")
+    implementation 'net.dv8tion:JDA:4.3.0_277'
     implementation("ch.qos.logback:logback-classic:1.2.3")
     implementation (group: 'io.github.cdimascio', name: 'java-dotenv', version: '5.2.2')
     implementation (group: 'org.json', name: 'json', version: '20210307')
@@ -26,7 +25,7 @@ dependencies {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'com.addypug.core.main'
+                'Main-Class': 'com.addypug.core.core'
         )
     }
 }
