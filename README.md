@@ -1,4 +1,5 @@
 # APU_JE
+[discord-shield]: https://discord.com/api/guilds/838867948310888459/widget.png
 A modular discord bot made in JDA 
 ## Branch Status
 Code in this branch is currently STABLE
