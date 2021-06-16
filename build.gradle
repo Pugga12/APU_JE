@@ -7,7 +7,7 @@ mainClassName = 'io.addypug.apu.core.botcore'
 
 
 version '0.2.5_121'
-def jdaVersion = '4.2.1_253'
+def jdaVersion = '4.3.0_280'
 
 sourceCompatibility = targetCompatibility = 1.8
 
