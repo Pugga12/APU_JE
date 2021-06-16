@@ -7,7 +7,6 @@ mainClassName = 'io.addypug.apu.core.botcore'
 
 
 version '0.2.5_121'
-def jdaVersion = '4.3.0_280'
 
 sourceCompatibility = targetCompatibility = 1.8
 
@@ -21,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    implementation ("net.dv8tion:JDA:$jdaVersion")
+    implementation 'net.dv8tion:JDA:4.3.0_280'
     implementation("ch.qos.logback:logback-classic:1.2.3")
     implementation (group: 'io.github.cdimascio', name: 'java-dotenv', version: '5.2.2')
     implementation (group: 'org.json', name: 'json', version: '20210307')
