@@ -4,7 +4,7 @@ public class Meta {
     /**
      * The Meta Class Contains Information About This APU Build, like the JDAInfo class in JDA
      */
-    public static final String branch = "experimental";
+    public static final String branch = "Stable";
     public static final String stability = "Stable"; //
     public static final String version = "0.2.6";
     public static final String build = "001";
