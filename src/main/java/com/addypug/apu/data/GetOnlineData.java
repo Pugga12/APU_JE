@@ -52,8 +52,11 @@ public class GetOnlineData {
             connection.connect();
             JsonObject capes = jsonParser.parse(new InputStreamReader(connection.getInputStream())).getAsJsonObject();
             String release = capes.get("latest-alpha").toString();
+            int build = Integer.parseInt(capes.get("build").toString());
             if (!release.equals(values.release_json)) {
                 ch_update_logger.warn("Update Detected! Current Version is " + values.release_json + " but latest version is " + release);
+            } else {
+                ch_update_logger.info("Update Check Finished. No Updates Available");
             }
         }catch(Exception e) {
             e.printStackTrace();
