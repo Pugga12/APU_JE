@@ -1,4 +1,4 @@
-package com.addypug.apu.fn;
+package com.addypug.apu.fn.adminutils;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
@@ -24,23 +24,25 @@ public class unbanUser extends ListenerAdapter {
             EmbedBuilder ebd = new EmbedBuilder();
             event.deferReply().queue();
             if (!event.getMember().hasPermission(Permission.BAN_MEMBERS)) {
-                ebd.addField("Access Is Denied", "You do not have the permission to perform this command\nRequires Permission: Ban User (Code P415)", true);
+                ebd.setTitle("Error: Access Is Denied");
+                ebd.addField("Insufficient Permissions", "You do not have the permission to perform this command\nRequires Permission: Ban User (Code P415)", true);
                 ebd.setColor(Color.blue);
                 ebd.setFooter("Please do not file a issue for this error. It will be closed");
                 event.getHook().editOriginalEmbeds(ebd.build()).queue();
             } else {
                 Member selfMember = event.getGuild().getSelfMember();
                 if (!selfMember.hasPermission(Permission.BAN_MEMBERS)) {
-                    ebd.addField("Access Is Denied", "I do not have the permission to unban this member\nI Require Permission: Ban User (Code P415-2)", true);
+                    ebd.setTitle("Error: Access Is Denied");
+                    ebd.addField("Insufficient Permissions", "I do not have the permission to unban this member\nRequired Permission: Ban User (Code P415-2)", true);
                     ebd.setColor(Color.blue);
-                    ebd.setFooter("Please do not file a issue for this error");
+                    ebd.setFooter("Please do not file a issue for this error. It will be closed");
                     return;
                 }
-
+                ebd.setTitle("Action Completed!");
                 ebd.addField("A user was unbanned successfully", user.getAsMention() +  " was unbanned", true);
                 ebd.setColor(Color.red);
                 event.getHook().editOriginalEmbeds(ebd.build()).queue();
-                event.getGuild().unban(user);
+                event.getGuild().unban(user).queue();
             }
         }
     }

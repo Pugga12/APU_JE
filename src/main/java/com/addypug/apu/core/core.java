@@ -1,10 +1,11 @@
 package com.addypug.apu.core;
 
 
-import com.addypug.apu.fn.banUser;
+import com.addypug.apu.fn.adminutils.banUser;
+import com.addypug.apu.fn.check_my_permissions;
 import com.addypug.apu.fn.infocmd;
-import com.addypug.apu.fn.kickUser;
-import com.addypug.apu.fn.unbanUser;
+import com.addypug.apu.fn.adminutils.kickUser;
+import com.addypug.apu.fn.adminutils.unbanUser;
 import com.addypug.apu.wrap.Meta;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.JDAInfo;
@@ -29,7 +30,8 @@ public class core {
         shardBuilder.addEventListeners(new banUser());
         shardBuilder.addEventListeners(new unbanUser());
         shardBuilder.addEventListeners(new kickUser());
-        shardBuilder.setActivity(Activity.playing("Type / to see available Commands | APU Experimental " + Meta.version));
+        shardBuilder.addEventListeners(new check_my_permissions());
+        shardBuilder.setActivity(Activity.playing("Type / to see available Commands | v" + Meta.version));
         Integer shardinteger = CfgHandler.valInt("shardint");
         logger.info("Beginning Sharding! Shards to initialize: " + shardinteger);
         for (int i = 0; i < shardinteger; i++)
@@ -55,7 +57,9 @@ public class core {
                         .addOptions(new OptionData(USER, "user", "The user to kick")
                                 .setRequired(true))
         );
-        logger.info("Attempting to synchronize slash commands");
+        cmds.addCommands(
+          new CommandData("check-my-permissions", "Check your ability to perform commands")
+        );
         cmds.queue();
     }
 }

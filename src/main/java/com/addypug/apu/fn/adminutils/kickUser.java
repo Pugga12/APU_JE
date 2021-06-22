@@ -1,4 +1,4 @@
-package com.addypug.apu.fn;
+package com.addypug.apu.fn.adminutils;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
@@ -25,26 +25,28 @@ public class kickUser extends ListenerAdapter {
             event.deferReply().queue();
             if (!event.getMember().hasPermission(Permission.KICK_MEMBERS)) {
                 ebd.setTitle("Error: Access Is Denied");
-                ebd.addField("", "You do not have the permission to perform this command\nRequires Permission: Kick User (Code P415)", true);
+                ebd.addField("Insufficient Permissions", "You do not have the permission to perform this command\nRequires Permission: Kick User (Code P415)", true);
                 ebd.setColor(Color.blue);
                 ebd.setFooter("Please do not file a issue for this error. It will be closed");
                 event.getHook().editOriginalEmbeds(ebd.build()).queue();
             } else {
                 Member selfMember = event.getGuild().getSelfMember();
                 if (!selfMember.hasPermission(Permission.KICK_MEMBERS)) {
-                    ebd.addField("Access Is Denied", "I do not have the permission to kick this member\nI Require Permission: Kick User (Code P415-2)", true);
+                    ebd.setTitle("Error: Access Is Denied");
+                    ebd.addField("Insufficient Permissions", "I do not have enough permissions to kick this member\nRequired Permission: Kick User (Code P415-2)", true);
                     ebd.setColor(Color.blue);
-                    ebd.setFooter("Please do not file a issue for this error");
+                    ebd.setFooter("Please do not file a issue for this error. It will be closed");
                     return;
                 }
                 if (member != null && !selfMember.canInteract(member)) {
-                    ebd.addField("Access Is Denied", "I do not have the permission to kick this member\n User is too powerful for me to kick (Code P416)", true);
+                    ebd.setTitle("Error: Access Is Denied");
+                    ebd.addField("Cannot Interact With This User", "I cannot interact with this user\n User is too powerful for me to kick (Code P416)", true);
                     ebd.setColor(Color.blue);
                     ebd.setFooter("Please do not file a issue for this error. It will be closed");
                     event.getHook().editOriginalEmbeds(ebd.build()).queue();
                     return;
                 }
-
+                ebd.setTitle("Action Completed!");
                 ebd.addField("A user was kicked successfully", user.getAsMention() +  " was kicked from the server", true);
                 ebd.setColor(Color.red);
                 event.getHook().editOriginalEmbeds(ebd.build()).queue();
