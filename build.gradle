@@ -1,26 +1,21 @@
 plugins {
+    id 'java'
     id'application'
     id'com.github.johnrengelman.shadow' version '5.2.0'
 }
-
-mainClassName = 'io.addypug.apu.core.botcore'
-
-
-version '0.2.5_121'
+mainClassName = 'com.addypug.apu.core.core'
+version '0.2.6_001'
 
 sourceCompatibility = targetCompatibility = 1.8
 
 
 repositories {
     mavenCentral()
-    maven {
-        name 'm2-dv8tion'
-        url 'https://m2.dv8tion.net/releases'
-    }
+    maven { url 'https://m2.dv8tion.net/releases' }
 }
 
 dependencies {
-    implementation 'net.dv8tion:JDA:4.3.0_280'
+    implementation 'net.dv8tion:JDA:4.3.0_281'
     implementation("ch.qos.logback:logback-classic:1.2.3")
     implementation (group: 'io.github.cdimascio', name: 'java-dotenv', version: '5.2.2')
     implementation (group: 'org.json', name: 'json', version: '20210307')
@@ -30,10 +25,7 @@ dependencies {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'com.addypug.apu.core.botcore'
+                'Main-Class': 'com.addypug.core.core'
         )
     }
 }
-
-
-compileJava.options.encoding = 'UTF-8'
