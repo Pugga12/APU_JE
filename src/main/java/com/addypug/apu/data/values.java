@@ -1,12 +1,15 @@
-package com.addypug.apu.wrap;
+package com.addypug.apu.data;
 
-public class Meta {
+public class values {
     /**
-     * The Meta Class Contains Information About This APU Build, like the JDAInfo class in JDA
+     * The Values Class Contains Information About This APU Build, like the JDAInfo class in JDA
      */
+    public static final String update_server_endpoint = "https://api.npoint.io/280f90167ea69341987e";
     public static final String branch = "Stable";
     public static final String stability = "Stable"; //
     public static final String version = "0.2.6";
+    public static final String release_json = "\"0.2.6_003\"";
+
     public static final String build = "001";
     public static final String stability_msg = ""; // this should be uncommented if the current build uses stable versions of JDA
     public static final String release_status = "Alpha";

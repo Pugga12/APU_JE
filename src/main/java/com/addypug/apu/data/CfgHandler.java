@@ -1,4 +1,4 @@
-package com.addypug.apu.core;
+package com.addypug.apu.data;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import org.slf4j.Logger;

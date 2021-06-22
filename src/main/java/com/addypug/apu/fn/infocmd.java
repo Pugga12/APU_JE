@@ -1,6 +1,5 @@
 package com.addypug.apu.fn;
 
-import com.addypug.apu.wrap.Meta;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
