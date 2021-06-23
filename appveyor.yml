@@ -1,4 +1,4 @@
-version: "0.2.6_001"
+version: "1.0.{build}"
 image: Ubuntu2004
 stack: jdk 16
 cache:
