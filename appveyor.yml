@@ -8,6 +8,6 @@ build_script:
   - chmod +x gradlew
   - ./gradlew buildDependents --no-daemon
 artifacts:
-  -path: "build\libs"
+- path: build\libs
 test: off
 deploy: off
