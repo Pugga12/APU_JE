@@ -7,5 +7,7 @@ cache:
 build_script:
   - chmod +x gradlew
   - ./gradlew buildDependents --no-daemon
+artifacts:
+  -path: "build\libs"
 test: off
 deploy: off
