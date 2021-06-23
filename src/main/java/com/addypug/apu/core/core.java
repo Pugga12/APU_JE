@@ -42,7 +42,7 @@ public class core {
         logger.info("Sharding complete!");
         CommandListUpdateAction cmds = shardBuilder.build().updateCommands();
         cmds.addCommands(
-                new CommandData("info", "Get info about this b`ot")
+                new CommandData("info", "Get info about this bot")
         );
         cmds.addCommands(
                 new CommandData("ban", "Ban a user")

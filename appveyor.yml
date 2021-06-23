@@ -1,11 +1,13 @@
-version: "1.0.{build}"
+version: cibuild-{build}
 image: Ubuntu2004
 stack: jdk 16
 cache:
-  - ~/.gradle/cache
-  - ~/.gradle/wrapper
+  - .gradle/wrapper
 build_script:
+  - java -version
   - chmod +x gradlew
   - ./gradlew buildDependents --no-daemon
+artifacts:
+- path: build\libs
 test: off
 deploy: off
