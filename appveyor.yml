@@ -1,6 +1,6 @@
 version: "0.2.6_001"
 image: Ubuntu2004
-stack: jdk 12
+stack: jdk 16
 cache:
   - ~/.gradle/cache
   - ~/.gradle/wrapper
