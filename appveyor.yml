@@ -1,0 +1,11 @@
+version: {build}
+image: Ubuntu2004
+stack: jdk 12
+cache:
+  - ~/.gradle/cache
+  - ~/.gradle/wrapper
+build_script:
+  - chmod +x gradlew
+  - ./gradlew buildDependents --no-daemon
+test: off
+deploy: off
