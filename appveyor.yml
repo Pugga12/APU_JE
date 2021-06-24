@@ -1,8 +1,6 @@
 version: cibuild-{build}
 image: Ubuntu2004
 stack: jdk 16
-cache:
-  - .gradle/wrapper
 build_script:
   - java -version
   - chmod +x gradlew

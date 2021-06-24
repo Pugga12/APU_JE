@@ -1,4 +1,4 @@
-package com.addypug.apu.core;
+package com.addypug.apu.data;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -48,8 +48,10 @@ public class GetOnlineData {
             JsonObject updates = JsonParser.parseReader(new InputStreamReader(connection.getInputStream())).getAsJsonObject();
             String release = updates.get("latest-alpha").toString();
             int build = Integer.parseInt(updates.get("build").toString());
+            String download_link = updates.get("download-link").toString();
+            String readme = updates.get("readme").toString();
             if (!release.equals(values.release_json)) {
-                ch_update_logger.warn("Update Detected! Current Version is " + values.release_json + " but latest version is " + release);
+                ch_update_logger.warn("Update Detected! Current Version is " + values.release_json + " but latest version is " + release + "\nDownload the new release at " + download_link);
             } else {
                 ch_update_logger.info("Update Check Complete. Up To Date!");
             }

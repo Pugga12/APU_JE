@@ -1,4 +1,4 @@
-package com.addypug.apu.core;
+package com.addypug.apu;
 
 
 import com.addypug.apu.data.CfgHandler;
