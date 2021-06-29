@@ -21,11 +21,11 @@ public class check_my_permissions extends ListenerAdapter {
         if (event.getName().equals("check-my-permissions")) {
             logger.debug("Valid command received");
             event.deferReply().queue();
-            String avail_ban = String.valueOf(event.getMember().hasPermission(Permission.BAN_MEMBERS));
-            String avail_K = String.valueOf(event.getMember().hasPermission(Permission.KICK_MEMBERS));
+            Boolean avail_ban = event.getMember().hasPermission(Permission.BAN_MEMBERS);
+            Boolean avail_K = event.getMember().hasPermission(Permission.KICK_MEMBERS);
             EmbedBuilder ebd = new EmbedBuilder();
             ebd.setColor(Color.red);
-            ebd.setTitle("Permission Checker - 1.0");
+            ebd.setTitle("Permission Checker - 2.0");
             ebd.addField("Usable Commands", "info: Usable By All Users\nban: " + avail_ban +"\nunban: " + avail_ban + "\nkick: " + avail_K , true);
 
             event.getHook().editOriginalEmbeds(ebd.build()).queue();
