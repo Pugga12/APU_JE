@@ -13,7 +13,6 @@ import java.awt.*;
 
 public class kickUser extends ListenerAdapter {
     Logger logger = LoggerFactory.getLogger(kickUser.class);
-
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
         if (event.getGuild() == null) return;

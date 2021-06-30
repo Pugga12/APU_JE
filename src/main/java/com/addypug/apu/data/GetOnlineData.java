@@ -15,7 +15,6 @@ import java.security.cert.X509Certificate;
 //Most of this code was created from https://github.com/GandyT/GandyClient-2.0/blob/master/src/main/java/GandyClient/DataManager.java
 public class GetOnlineData {
     public static Logger ch_update_logger = LoggerFactory.getLogger("updatechkr");
-    public JsonObject jsonObject = null;
     public static void fetchUpdates(){
         String databaseUrl = values.update_server_endpoint;
         ch_update_logger.info("Downloading from " + databaseUrl);

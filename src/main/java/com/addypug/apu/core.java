@@ -3,6 +3,7 @@ package com.addypug.apu;
 
 import com.addypug.apu.data.CfgHandler;
 import com.addypug.apu.data.GetOnlineData;
+import com.addypug.apu.data.dbsubst.SQLiteDataSource;
 import com.addypug.apu.fn.adminutils.banUser;
 import com.addypug.apu.fn.check_my_permissions;
 import com.addypug.apu.fn.infocmd;
@@ -64,5 +65,6 @@ public class core {
         );
         GetOnlineData.fetchUpdates();
         //cmds.queue();
+        SQLiteDataSource.getConnection();
     }
 }

@@ -13,7 +13,6 @@ import java.awt.*;
 
 public class banUser extends ListenerAdapter {
     Logger logger = LoggerFactory.getLogger(banUser.class);
-
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
         if (event.getGuild() == null) return;
