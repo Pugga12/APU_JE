@@ -19,10 +19,12 @@ public class banUser extends ListenerAdapter {
         if (event.getName().equals("ban")) {
             User user = event.getOption("user").getAsUser();
             Member member = event.getOption("user").getAsMember();
-            logger.debug("Valid command received");
+            Integer deldaysint = Integer.parseInt(event.getOption("deldays").getAsString());
+            logger.debug("Valid message received");
             EmbedBuilder ebd = new EmbedBuilder();
             event.deferReply().queue();
             if (!event.getMember().hasPermission(Permission.BAN_MEMBERS)) {
+                ebd.setTitle("Error: Access Is Denied");
                 ebd.addField("Insufficient Permissions", "You do not have the permission to perform this command\nRequires Permission: Ban User (Code P415)", true);
                 ebd.setColor(Color.blue);
                 ebd.setFooter("Please do not file a issue for this error. It will be closed");
@@ -43,11 +45,20 @@ public class banUser extends ListenerAdapter {
                     event.getHook().editOriginalEmbeds(ebd.build()).queue();
                     return;
                 }
+                Integer ddoverflow = deldaysint - 7;
+                if (deldaysint > 7) {
+                    ebd.setTitle("Error: Argument Over Maximum Value");
+                    ebd.setColor(Color.blue);
+                    ebd.addField("Argument 'deldays' is > 7", "deldays is " + ddoverflow + " days greater than the maximum value of 7 days (Code P7)", true);
+                    ebd.setFooter("Please do not file a issue for this error. It will be closed");
+                    event.getHook().editOriginalEmbeds(ebd.build()).queue();
+                    return;
+                }
                 ebd.setTitle("Action Completed!");
-                ebd.addField("A user was banned successfully", user.getAsMention() +  " was banned", true);
+                ebd.addField("A user was banned successfully", user.getAsMention() +  " was banned\nAll messages sent within " + deldaysint + " days were deleted", true);
                 ebd.setColor(Color.red);
                 event.getHook().editOriginalEmbeds(ebd.build()).queue();
-                event.getGuild().ban(user, 1).queue();
+                event.getGuild().ban(user, deldaysint).queue();
             }
         }
     }

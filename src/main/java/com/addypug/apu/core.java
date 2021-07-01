@@ -49,6 +49,7 @@ public class core {
                 new CommandData("ban", "Ban a user")
                     .addOptions(new OptionData(USER, "user", "The User To Ban")
                         .setRequired(true))
+                    .addOptions(new OptionData(INTEGER, "deldays", "How many days of messages should we remove. Must be no more than 7 days").setRequired(true))
         );
         cmds.addCommands(
                 new CommandData("unban", "Unban a user")
@@ -64,7 +65,7 @@ public class core {
           new CommandData("check-my-permissions", "Check your ability to perform commands")
         );
         GetOnlineData.fetchUpdates();
-        //cmds.queue();
+        cmds.queue();
         SQLiteDataSource.getConnection();
     }
 }

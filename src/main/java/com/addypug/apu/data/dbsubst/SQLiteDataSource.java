@@ -1,5 +1,6 @@
 package com.addypug.apu.data.dbsubst;
 
+import com.addypug.apu.data.values;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.slf4j.Logger;
@@ -41,8 +42,10 @@ public class SQLiteDataSource{
             // language=SQLite
             statement.execute("CREATE TABLE IF NOT EXISTS guild_settings (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "guild_id VARCHAR(20) NOT NULL);");
-            logger.info("Table Initialized");
+                    "guild_id VARCHAR(20) NOT NULL," +
+                    "database_revision STRING NOT NULL DEFAULT " + values.database_revision +
+                    ");");
+            logger.info("Tables Have Been Setup with Database Schema "+ values.database_revision);
         } catch (SQLException e) {
             e.printStackTrace();
         }

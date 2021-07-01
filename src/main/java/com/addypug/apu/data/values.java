@@ -8,10 +8,10 @@ public class values {
     public static final String branch = "Stable";
     public static final String stability = "Stable"; //
     public static final String version = "0.2.6";
-    public static final String release_json = "\"0.2.6_005\"";
-    public static final int build_json = 005;
-
-    public static final String build = "005";
+    public static final String release_json = "\"0.2.6_006\"";
+    public static final int build_json = 006;
+    public static final String database_revision = "DSR3";
+    public static final String build = "006";
     public static final String stability_msg = ""; // this should be uncommented if the current build uses stable versions of JDA
     public static final String release_status = "Alpha";
     //public static final String stability_msg = "This build is experimental and may be unstable. Please tag your issues with branch:@experimental_features if a bug is found"; // this should be uncommented if the current build uses experimental versions of JDA
