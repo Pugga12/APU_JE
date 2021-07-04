@@ -41,8 +41,12 @@ public class SQLiteDataSource {
         try (final Statement statement = getConnection().createStatement()) {
 
             // language=SQLite
-            statement.execute("CREATE TABLE IF NOT EXISTS guild (id INTEGER PRIMARY KEY AUTOINCREMENT, guildId integer NOT NULL, database_revision STRING NOT NULL DEFAULT " + values.database_revision + ");" );
-            logger.info("Tables Have Been Setup with Database Schema " + values.database_revision);
+            statement.execute("CREATE TABLE IF NOT EXISTS guild (id INTEGER PRIMARY KEY AUTOINCREMENT, guildId integer NOT NULL);");
+            statement.execute("CREATE TABLE IF NOT EXISTS metadata(id INTEGER PRIMARY KEY AUTOINCREMENT, datatype STRING NOT NULL, value);");
+            statement.execute("INSERT or IGNORE INTO metadata(id, datatype, value) VALUES (1, 'Database_Schema', '" + values.database_revision + "')");
+            statement.execute("INSERT OR IGNORE INTO metadata(id, datatype, value) VALUES (2, 'initialv_version',  '" + values.version + "_" + values.build + "')");
+            statement.execute("INSERT OR IGNORE INTO metadata(id, datatype, value) VALUES (3, 'initialv_release_status', '" + values.release_status + "')");
+            logger.info("Database Tables Initialized");
         } catch (SQLException e) {
             e.printStackTrace();
         }
