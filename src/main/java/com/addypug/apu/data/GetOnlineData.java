@@ -15,7 +15,8 @@ import java.security.cert.X509Certificate;
 //Most of this code was created from https://github.com/GandyT/GandyClient-2.0/blob/master/src/main/java/GandyClient/DataManager.java
 public class GetOnlineData {
     public static Logger ch_update_logger = LoggerFactory.getLogger("updatechkr");
-    public static void fetchUpdates(){
+
+    public static void fetchUpdates() {
         String databaseUrl = values.update_server_endpoint;
         ch_update_logger.info("Downloading from " + databaseUrl);
         TrustManager[] trustAllCerts = new TrustManager[]{
@@ -23,9 +24,11 @@ public class GetOnlineData {
                     public X509Certificate[] getAcceptedIssuers() {
                         return null;
                     }
+
                     public void checkClientTrusted(
                             X509Certificate[] certs, String authType) {
                     }
+
                     public void checkServerTrusted(
                             X509Certificate[] certs, String authType) {
                     }
@@ -54,10 +57,10 @@ public class GetOnlineData {
             } else {
                 ch_update_logger.info("Update Check Complete. Up To Date!");
             }
-        }catch(Exception e) {
+        } catch (Exception e) {
             ch_update_logger.error("Unable To Retrieve The Update File. Printing Stack Trace");
             e.printStackTrace();
         }
-      }
+    }
 }
 

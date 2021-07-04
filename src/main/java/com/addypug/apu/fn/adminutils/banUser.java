@@ -13,6 +13,7 @@ import java.awt.*;
 
 public class banUser extends ListenerAdapter {
     Logger logger = LoggerFactory.getLogger(banUser.class);
+
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
         if (event.getGuild() == null) return;
@@ -55,7 +56,7 @@ public class banUser extends ListenerAdapter {
                     return;
                 }
                 ebd.setTitle("Action Completed!");
-                ebd.addField("A user was banned successfully", user.getAsMention() +  " was banned\nAll messages sent within " + deldaysint + " days were deleted", true);
+                ebd.addField("A user was banned successfully", user.getAsMention() + " was banned\nAll messages sent within " + deldaysint + " days were deleted", true);
                 ebd.setColor(Color.red);
                 event.getHook().editOriginalEmbeds(ebd.build()).queue();
                 event.getGuild().ban(user, deldaysint).queue();

@@ -13,6 +13,7 @@ import java.awt.*;
 
 public class kickUser extends ListenerAdapter {
     Logger logger = LoggerFactory.getLogger(kickUser.class);
+
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
         if (event.getGuild() == null) return;
@@ -46,7 +47,7 @@ public class kickUser extends ListenerAdapter {
                     return;
                 }
                 ebd.setTitle("Action Completed!");
-                ebd.addField("A user was kicked successfully", user.getAsMention() +  " was kicked from the server", true);
+                ebd.addField("A user was kicked successfully", user.getAsMention() + " was kicked from the server", true);
                 ebd.setColor(Color.red);
                 event.getHook().editOriginalEmbeds(ebd.build()).queue();
                 event.getGuild().kick(member).queue();

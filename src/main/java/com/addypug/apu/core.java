@@ -26,6 +26,7 @@ public class core {
         Logger logger = LoggerFactory.getLogger(core.class);
         System.out.println("Build Info: Version " + values.release_status + " " + values.version + "_" + values.build + " (" + values.stability + ", Built on JDA " + JDAInfo.VERSION + ") @ branch " + values.branch);
         System.out.println(values.stability_msg);
+        SQLiteDataSource.getConnection();
         logger.info("Instance is now launching! Due to sharding, loading may take a while!");
         String token = CfgHandler.valString("token");
         JDABuilder shardBuilder = JDABuilder.createDefault(token);
@@ -47,14 +48,14 @@ public class core {
         );
         cmds.addCommands(
                 new CommandData("ban", "Ban a user")
-                    .addOptions(new OptionData(USER, "user", "The User To Ban")
-                        .setRequired(true))
-                    .addOptions(new OptionData(INTEGER, "deldays", "How many days of messages should we remove. Must be no more than 7 days").setRequired(true))
+                        .addOptions(new OptionData(USER, "user", "The User To Ban")
+                                .setRequired(true))
+                        .addOptions(new OptionData(INTEGER, "deldays", "How many days of messages should we remove. Must be no more than 7 days").setRequired(true))
         );
         cmds.addCommands(
                 new CommandData("unban", "Unban a user")
-                    .addOptions(new OptionData(USER, "user", "The user to unban. Must be a ID")
-                        .setRequired(true))
+                        .addOptions(new OptionData(USER, "user", "The user to unban. Must be a ID")
+                                .setRequired(true))
         );
         cmds.addCommands(
                 new CommandData("kick", "Kick a user")
@@ -62,10 +63,9 @@ public class core {
                                 .setRequired(true))
         );
         cmds.addCommands(
-          new CommandData("check-my-permissions", "Check your ability to perform commands")
+                new CommandData("check-my-permissions", "Check your ability to perform commands")
         );
         GetOnlineData.fetchUpdates();
         cmds.queue();
-        SQLiteDataSource.getConnection();
     }
 }

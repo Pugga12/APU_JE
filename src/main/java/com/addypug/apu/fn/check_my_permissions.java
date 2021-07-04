@@ -15,6 +15,7 @@ import java.awt.*;
 
 public class check_my_permissions extends ListenerAdapter {
     Logger logger = LoggerFactory.getLogger(check_my_permissions.class);
+
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
         if (event.getGuild() == null) return;
@@ -26,7 +27,7 @@ public class check_my_permissions extends ListenerAdapter {
             EmbedBuilder ebd = new EmbedBuilder();
             ebd.setColor(Color.red);
             ebd.setTitle("Permission Checker - 2.0");
-            ebd.addField("Usable Commands", "info: Usable By All Users\nban: " + avail_ban +"\nunban: " + avail_ban + "\nkick: " + avail_K , true);
+            ebd.addField("Usable Commands", "info: Usable By All Users\nban: " + avail_ban + "\nunban: " + avail_ban + "\nkick: " + avail_K, true);
 
             event.getHook().editOriginalEmbeds(ebd.build()).queue();
         }

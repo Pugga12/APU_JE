@@ -39,7 +39,7 @@ public class unbanUser extends ListenerAdapter {
                     return;
                 }
                 ebd.setTitle("Action Completed!");
-                ebd.addField("A user was unbanned successfully", user.getAsMention() +  " was unbanned", true);
+                ebd.addField("A user was unbanned successfully", user.getAsMention() + " was unbanned", true);
                 ebd.setColor(Color.red);
                 event.getHook().editOriginalEmbeds(ebd.build()).queue();
                 event.getGuild().unban(user).queue();

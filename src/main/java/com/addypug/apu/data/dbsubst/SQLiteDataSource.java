@@ -12,13 +12,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class SQLiteDataSource{
+public class SQLiteDataSource {
     static Logger logger = LoggerFactory.getLogger(SQLiteDataSource.class);
     private static final HikariConfig config = new HikariConfig();
     private static HikariDataSource ds = null;
+
     static {
         try {
-            final File dbFile = new File("apudb.db") ;
+            final File dbFile = new File("apudb.db");
 
             if (!dbFile.exists()) {
                 if (dbFile.createNewFile()) {
@@ -40,16 +41,13 @@ public class SQLiteDataSource{
         try (final Statement statement = getConnection().createStatement()) {
 
             // language=SQLite
-            statement.execute("CREATE TABLE IF NOT EXISTS guild_settings (" +
-                    "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "guild_id VARCHAR(20) NOT NULL," +
-                    "database_revision STRING NOT NULL DEFAULT " + values.database_revision +
-                    ");");
-            logger.info("Tables Have Been Setup with Database Schema "+ values.database_revision);
+            statement.execute("CREATE TABLE IF NOT EXISTS guild (id INTEGER PRIMARY KEY AUTOINCREMENT, guildId integer NOT NULL, database_revision STRING NOT NULL DEFAULT " + values.database_revision + ");" );
+            logger.info("Tables Have Been Setup with Database Schema " + values.database_revision);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     public static Connection getConnection() throws SQLException {
         return ds.getConnection();
     }

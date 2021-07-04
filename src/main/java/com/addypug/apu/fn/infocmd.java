@@ -10,6 +10,7 @@ import java.awt.*;
 
 public class infocmd extends ListenerAdapter {
     Logger logger = LoggerFactory.getLogger(infocmd.class);
+
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
         if (event.getGuild() == null) return;
