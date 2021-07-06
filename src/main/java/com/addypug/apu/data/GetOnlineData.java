@@ -16,8 +16,11 @@ import java.security.cert.X509Certificate;
 public class GetOnlineData {
     public static Logger ch_update_logger = LoggerFactory.getLogger("updatechkr");
 
-    public static void fetchUpdates() {
-        String databaseUrl = values.update_server_endpoint;
+    /**
+     * Gets info about the latest update from a JSON file over the internet
+     * @param databaseUrl The URL of the JSON file to fetch
+     */
+    public static void fetchUpdates(String databaseUrl) {
         ch_update_logger.info("Downloading from " + databaseUrl);
         TrustManager[] trustAllCerts = new TrustManager[]{
                 new X509TrustManager() {

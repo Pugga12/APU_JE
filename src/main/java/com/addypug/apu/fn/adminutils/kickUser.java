@@ -1,5 +1,6 @@
 package com.addypug.apu.fn.adminutils;
 
+import com.addypug.apu.data.dbsubst.guildDb;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
@@ -10,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.sql.SQLException;
 
 public class kickUser extends ListenerAdapter {
     Logger logger = LoggerFactory.getLogger(kickUser.class);
@@ -17,6 +19,11 @@ public class kickUser extends ListenerAdapter {
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
         if (event.getGuild() == null) return;
+        try {
+            guildDb.createServerRow(event.getGuild().getId());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         if (event.getName().equals("kick")) {
             User user = event.getOption("user").getAsUser();
             Member member = event.getOption("user").getAsMember();

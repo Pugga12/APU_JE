@@ -4,6 +4,7 @@
  */
 package com.addypug.apu.fn;
 
+import com.addypug.apu.data.dbsubst.guildDb;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
@@ -12,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.sql.SQLException;
 
 public class check_my_permissions extends ListenerAdapter {
     Logger logger = LoggerFactory.getLogger(check_my_permissions.class);
@@ -19,6 +21,11 @@ public class check_my_permissions extends ListenerAdapter {
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
         if (event.getGuild() == null) return;
+        try {
+            guildDb.createServerRow(event.getGuild().getId());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         if (event.getName().equals("check-my-permissions")) {
             logger.debug("Valid command received");
             event.deferReply().queue();

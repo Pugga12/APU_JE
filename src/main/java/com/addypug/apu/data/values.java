@@ -8,9 +8,9 @@ public class values {
     public static final String branch = "Stable";
     public static final String stability = "Stable"; //
     public static final String version = "0.2.6";
-    public static final String release_json = "\"0.2.6_008\"";
-    public static final String database_revision = "DSR7";
-    public static final String build = "008";
+    public static final String release_json = "\"0.2.6_10\"";
+    public static final String database_revision = "DSR8";
+    public static final String build = "10";
     public static final String stability_msg = ""; // this should be uncommented if the current build uses stable versions of JDA
     public static final String release_status = "Alpha";
 }

@@ -6,7 +6,7 @@ import com.addypug.apu.data.GetOnlineData;
 import com.addypug.apu.data.dbsubst.SQLiteDataSource;
 import com.addypug.apu.fn.adminutils.banUser;
 import com.addypug.apu.fn.check_my_permissions;
-import com.addypug.apu.fn.infocmd;
+import com.addypug.apu.fn.status;
 import com.addypug.apu.fn.adminutils.kickUser;
 import com.addypug.apu.fn.adminutils.unbanUser;
 import com.addypug.apu.data.values;
@@ -19,20 +19,35 @@ import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
+import java.lang.management.ManagementFactory;
+import java.lang.management.OperatingSystemMXBean;
+import java.lang.management.RuntimeMXBean;
 
 import static net.dv8tion.jda.api.interactions.commands.OptionType.*;
 
 public class core {
     public static void main(String[] arguments) throws Exception {
         Logger logger = LoggerFactory.getLogger(core.class);
-        System.out.println("Build Info: Version " + values.release_status + " " + values.version + "_" + values.build + " (" + values.stability + ", Built on JDA " + JDAInfo.VERSION + ") @ branch " + values.branch);
-        System.out.println(values.stability_msg);
-        SQLiteDataSource.getConnection();
+        RuntimeMXBean runtimeMX = ManagementFactory.getRuntimeMXBean();
+        OperatingSystemMXBean osMX = ManagementFactory.getOperatingSystemMXBean();
+        if (runtimeMX != null && osMX != null) {
+            String javaInfo = "Java: " + runtimeMX.getSpecVersion() + " (" + runtimeMX.getVmName() + " " + runtimeMX.getVmVersion() + ")";
+            String osInfo = null;
+            if (osMX.getName().equals("Windows 10")) {
+                osInfo = "Host: " + osMX.getName() + " (" + osMX.getArch() + ")";
+            } else {
+                osInfo = "Host: " + osMX.getName() + " " + osMX.getVersion() + " (" + osMX.getArch() + ")";
+            }
+            logger.info("System Info: " + javaInfo + ", " + osInfo);
+        } else {
+            logger.error("Unable to read the system info");
+        }
+        logger.info("Build Info: Version " + values.release_status + " " + values.version + "_" + values.build + " (" + values.stability + ", Built on JDA " + JDAInfo.VERSION + ") @ branch " + values.branch);
         logger.info("Instance is now launching! Due to sharding, loading may take a while!");
         String token = CfgHandler.valString("token");
         JDABuilder shardBuilder = JDABuilder.createDefault(token);
-        shardBuilder.addEventListeners(new infocmd());
+        SQLiteDataSource.getConnection();
+        shardBuilder.addEventListeners(new status());
         shardBuilder.addEventListeners(new banUser());
         shardBuilder.addEventListeners(new unbanUser());
         shardBuilder.addEventListeners(new kickUser());
@@ -46,7 +61,7 @@ public class core {
         logger.info("Sharding complete!");
         CommandListUpdateAction cmds = shardBuilder.build().updateCommands();
         cmds.addCommands(
-                new CommandData("info", "Get info about this bot")
+                new CommandData("status", "Get status about this bot")
         );
         cmds.addCommands(
                 new CommandData("ban", "Ban a user")
@@ -67,7 +82,7 @@ public class core {
         cmds.addCommands(
                 new CommandData("check-my-permissions", "Check your ability to perform commands")
         );
-        GetOnlineData.fetchUpdates();
+        GetOnlineData.fetchUpdates(values.update_server_endpoint);
         cmds.queue();
     }
 }
