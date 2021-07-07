@@ -1,4 +1,4 @@
-version: {branch}-{build}
+version: cibuild-{build}
 image: Ubuntu2004
 stack: jdk 16
 build_script:
