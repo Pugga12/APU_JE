@@ -21,11 +21,6 @@ public class check_my_permissions extends ListenerAdapter {
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
         if (event.getGuild() == null) return;
-        try {
-            guildDb.createServerRow(event.getGuild().getId());
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
         if (event.getName().equals("check-my-permissions")) {
             logger.debug("Valid command received");
             event.deferReply().queue();
