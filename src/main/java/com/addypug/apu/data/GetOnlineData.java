@@ -61,8 +61,7 @@ public class GetOnlineData {
                 ch_update_logger.info("Update Check Complete. Up To Date!");
             }
         } catch (Exception e) {
-            ch_update_logger.error("Unable To Retrieve The Update File. Printing Stack Trace");
-            e.printStackTrace();
+            ch_update_logger.error("Unable To Retrieve The Update File\n" + e.getMessage());
         }
     }
 }

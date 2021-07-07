@@ -19,11 +19,6 @@ public class kickUser extends ListenerAdapter {
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
         if (event.getGuild() == null) return;
-        try {
-            guildDb.createServerRow(event.getGuild().getId());
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
         if (event.getName().equals("kick")) {
             User user = event.getOption("user").getAsUser();
             Member member = event.getOption("user").getAsMember();
