@@ -32,6 +32,9 @@ public class status extends ListenerAdapter {
             long numberOfMinutes = uptimeInSeconds / 60;
             long numberOfHours = numberOfMinutes / 60;
             long numberOfDays = numberOfHours / 24;
+            if (uptimeInSeconds > 60) {
+                uptimeInSeconds = uptimeInSeconds - 60;
+            }
             logger.debug("Made Uptime Calculations: " + numberOfDays + " days, " + numberOfHours + " hours, " + numberOfMinutes + " minutes, " + uptimeInSeconds + " seconds\n(" + uptime + " ms)");
             ebd.addField("Uptime", numberOfDays + " days, " + numberOfHours + " hours, " + numberOfMinutes + " minutes, " + uptimeInSeconds + " seconds\n(" + uptime + " ms)", true);
             event.getHook().sendMessageEmbeds(ebd.build()).queue();
