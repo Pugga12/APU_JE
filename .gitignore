@@ -1,9 +1,7 @@
 /.gradle/
 /build/
 /.env
-/enterprise/
-
-/dropped-features/
 /.idea/
 /rejected/
 /apudb.db
+/src/main/resources/assets/language/translations/
