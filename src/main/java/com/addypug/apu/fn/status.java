@@ -25,7 +25,7 @@ public class status extends ListenerAdapter {
             EmbedBuilder ebd = new EmbedBuilder();
             ebd.setColor(Color.red);
             ebd.setTitle("Status");
-            ebd.addField("Build Info", "APU " + values.release_status + " " + values.version + "\nBuild: " + values.build + "\n" + values.stability + "\nBuilt on JDA " + JDAInfo.VERSION + "\n" + event.getJDA().getShardInfo(), true);
+            ebd.addField("Build Info", "APU " + values.release_status + " " + values.version + "\n" + values.stability + "\nBuilt on JDA " + JDAInfo.VERSION + "\n" + event.getJDA().getShardInfo(), true);
             RuntimeMXBean runtimeMX = ManagementFactory.getRuntimeMXBean();
             long uptime = runtimeMX.getUptime();
             long uptimeInSeconds =  uptime / 1000;

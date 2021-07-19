@@ -42,7 +42,7 @@ public class core {
         } else {
             logger.error("Unable to read the system info");
         }
-        logger.info("Build Info: Version " + values.release_status + " " + values.version + "_" + values.build + " (" + values.stability + ", Built on JDA " + JDAInfo.VERSION + ") @ branch " + values.branch);
+        logger.info("Build Info: Version " + values.release_status + " " + values.version + " (" + values.stability + ", Built on JDA " + JDAInfo.VERSION + ") @ branch " + values.branch);
         logger.info("Instance is now launching! Due to sharding, loading may take a while!");
         String token = CfgHandler.valString("token");
         JDABuilder shardBuilder = JDABuilder.createDefault(token);
