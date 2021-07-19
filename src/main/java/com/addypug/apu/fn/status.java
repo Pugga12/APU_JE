@@ -33,7 +33,8 @@ public class status extends ListenerAdapter {
             long numberOfHours = numberOfMinutes / 60;
             long numberOfDays = numberOfHours / 24;
             if (uptimeInSeconds > 60) {
-                uptimeInSeconds = uptimeInSeconds - 60;
+                long estSeconds = numberOfMinutes * 60;
+                uptimeInSeconds = uptimeInSeconds - estSeconds;
             }
             logger.debug("Made Uptime Calculations: " + numberOfDays + " days, " + numberOfHours + " hours, " + numberOfMinutes + " minutes, " + uptimeInSeconds + " seconds\n(" + uptime + " ms)");
             ebd.addField("Uptime", numberOfDays + " days, " + numberOfHours + " hours, " + numberOfMinutes + " minutes, " + uptimeInSeconds + " seconds\n(" + uptime + " ms)", true);
