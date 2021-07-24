@@ -48,7 +48,7 @@ public class SQLiteDataSource {
             statement.execute("INSERT OR IGNORE INTO metadata(id, datatype, value) VALUES (3, 'initialv_release_status', '" + values.release_status + "')");
             logger.info("Database Tables Initialized");
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 

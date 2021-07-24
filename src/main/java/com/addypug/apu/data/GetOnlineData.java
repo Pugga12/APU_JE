@@ -44,6 +44,7 @@ public class GetOnlineData {
             sc.init(null, trustAllCerts, new SecureRandom());
             HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
         } catch (Exception e) {
+            ch_update_logger.error(e.getMessage());
         }
         HostnameVerifier allHostsValid = (hostname, session) -> true;
         try {

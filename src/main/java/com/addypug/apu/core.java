@@ -83,6 +83,6 @@ public class core {
                 new CommandData("check-my-permissions", "Check your ability to perform commands")
         );
         GetOnlineData.fetchUpdates(values.update_server_endpoint);
-        //cmds.queue();
+        cmds.queue();
     }
 }
