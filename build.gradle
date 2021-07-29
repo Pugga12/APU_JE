@@ -15,8 +15,8 @@ repositories {
 }
 
 dependencies {
-    implementation ('net.dv8tion:JDA:4.3.0_297')
-    implementation("ch.qos.logback:logback-classic:1.2.3")
+    implementation ('net.dv8tion:JDA:4.3.0_298')
+    implementation("ch.qos.logback:logback-classic:1.2.4-groovyless")
     implementation (group: 'io.github.cdimascio', name: 'java-dotenv', version: '5.2.2')
     implementation ('com.google.code.gson:gson:2.8.7')
     implementation ('com.sedmelluq:lavaplayer:1.3.78')
