@@ -1,6 +1,5 @@
-package com.addypug.apu.fn;
+package com.addypug.apu.functions;
 
-import com.addypug.apu.data.dbsubst.guildDb;
 import com.addypug.apu.data.values;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDAInfo;
@@ -12,8 +11,6 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
-import java.sql.SQLException;
-import java.util.concurrent.TimeUnit;
 
 public class status extends ListenerAdapter {
     Logger logger = LoggerFactory.getLogger(status.class);

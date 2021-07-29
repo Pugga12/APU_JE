@@ -1,6 +1,5 @@
-package com.addypug.apu.fn.adminutils;
+package com.addypug.apu.functions.adminutils;
 
-import com.addypug.apu.data.dbsubst.guildDb;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
@@ -11,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
-import java.sql.SQLException;
 
 public class banUser extends ListenerAdapter {
     Logger logger = LoggerFactory.getLogger(banUser.class);
@@ -57,7 +55,7 @@ public class banUser extends ListenerAdapter {
                     return;
                 }
                 ebd.setTitle("Action Completed!");
-                ebd.addField("A user was banned successfully", user.getAsMention() + " was banned\nAll messages sent within " + deldaysint + " days were deleted", true);
+                ebd.addField(user.getAsMention() + " was banned successfully", user.getAsMention() + " was banned\nAll messages sent within " + deldaysint + " days were deleted", true);
                 ebd.setColor(Color.red);
                 event.getHook().editOriginalEmbeds(ebd.build()).queue();
                 event.getGuild().ban(user, deldaysint).queue();

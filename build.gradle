@@ -4,7 +4,7 @@ plugins {
     id'com.github.johnrengelman.shadow' version '5.2.0'
 }
 mainClassName = 'com.addypug.apu.core'
-version '0.2.6.58A'
+version '0.2.6.59'
 
 sourceCompatibility = targetCompatibility = 1.8
 

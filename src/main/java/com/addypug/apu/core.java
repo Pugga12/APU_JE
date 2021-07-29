@@ -4,12 +4,13 @@ package com.addypug.apu;
 import com.addypug.apu.data.CfgHandler;
 import com.addypug.apu.data.GetOnlineData;
 import com.addypug.apu.data.dbsubst.SQLiteDataSource;
-import com.addypug.apu.fn.adminutils.banUser;
-import com.addypug.apu.fn.check_my_permissions;
-import com.addypug.apu.fn.status;
-import com.addypug.apu.fn.adminutils.kickUser;
-import com.addypug.apu.fn.adminutils.unbanUser;
+import com.addypug.apu.functions.adminutils.banUser;
+import com.addypug.apu.functions.check_my_permissions;
+import com.addypug.apu.functions.status;
+import com.addypug.apu.functions.adminutils.kickUser;
+import com.addypug.apu.functions.adminutils.unbanUser;
 import com.addypug.apu.data.values;
+import com.addypug.apu.functions.test.pingTest;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.JDAInfo;
 import net.dv8tion.jda.api.entities.Activity;
@@ -31,7 +32,7 @@ public class core {
         RuntimeMXBean runtimeMX = ManagementFactory.getRuntimeMXBean();
         OperatingSystemMXBean osMX = ManagementFactory.getOperatingSystemMXBean();
         if (runtimeMX != null && osMX != null) {
-            String javaInfo = "Java: " + runtimeMX.getSpecVersion() + " (" + runtimeMX.getVmName() + " " + runtimeMX.getVmVersion() + ")";
+            String javaInfo = "Java " + runtimeMX.getSpecVersion() + " (" + runtimeMX.getVmName() + " " + runtimeMX.getVmVersion() + ")";
             String osInfo = null;
             if (osMX.getName().equals("Windows 10")) {
                 osInfo = "Host: " + osMX.getName() + " (" + osMX.getArch() + ")";
@@ -44,9 +45,13 @@ public class core {
         }
         logger.info("Build Info: Version " + values.release_status + " " + values.version + " (" + values.stability + ", Built on JDA " + JDAInfo.VERSION + ") @ branch " + values.branch);
         logger.info("Instance is now launching! Due to sharding, loading may take a while!");
-        String token = CfgHandler.valString("token");
-        JDABuilder shardBuilder = JDABuilder.createDefault(token);
+        Float Spec = Float.parseFloat(runtimeMX.getSpecVersion());
+        if (Spec < 16 | runtimeMX.getSpecVersion().startsWith("1.")) {
+            logger.warn("\nDeprecation warning for Java Versions Below 16\nAs of 0.2.7, older java versions (Below 16) cannot be used with APU\nLearn more at https://github.com/Pugga12/APU_JE/discussions/18\nThis warning was displayed because you are running Java " + Spec);
+        }
+        JDABuilder shardBuilder = JDABuilder.createDefault(CfgHandler.valString("token"));
         SQLiteDataSource.getConnection();
+        shardBuilder.addEventListeners(new pingTest());
         shardBuilder.addEventListeners(new status());
         shardBuilder.addEventListeners(new banUser());
         shardBuilder.addEventListeners(new unbanUser());

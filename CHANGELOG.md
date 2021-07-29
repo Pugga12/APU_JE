@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ### Added
 - A way to seamlessly update your database just by using the --do-db-upgrade flag when starting bot
 # Releases
+## 0.2.6.59 - 2021-07-29
+## Added
+- Java Deprecation Warning
 ## 0.2.6.58 - 2021-07-19
 ### Fixed
 - minutes and seconds can be calculated over 1m

@@ -1,6 +1,5 @@
-package com.addypug.apu.fn.adminutils;
+package com.addypug.apu.functions.adminutils;
 
-import com.addypug.apu.data.dbsubst.guildDb;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
@@ -11,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
-import java.sql.SQLException;
 
 public class kickUser extends ListenerAdapter {
     Logger logger = LoggerFactory.getLogger(kickUser.class);

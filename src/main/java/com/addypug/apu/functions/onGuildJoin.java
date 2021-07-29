@@ -1,4 +1,4 @@
-package com.addypug.apu.fn;
+package com.addypug.apu.functions;
 
 import com.addypug.apu.data.dbsubst.guildDb;
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent;
