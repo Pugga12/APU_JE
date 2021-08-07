@@ -10,11 +10,4 @@ import java.sql.SQLException;
 
 public class onGuildJoin extends ListenerAdapter {
     Logger logger = LoggerFactory.getLogger(onGuildJoin.class);
-    public void onGuildJoin(GuildJoinEvent event) {
-        try {
-            guildDb.createServerRow(event.getGuild().getId());
-        } catch (SQLException e) {
-           logger.error(e.getMessage());
-        }
-    }
 }

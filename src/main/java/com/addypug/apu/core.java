@@ -45,10 +45,6 @@ public class core {
         }
         logger.info("Build Info: Version " + values.release_status + " " + values.version + " (" + values.stability + ", Built on JDA " + JDAInfo.VERSION + ") @ branch " + values.branch);
         logger.info("Instance is now launching! Due to sharding, loading may take a while!");
-        Float Spec = Float.parseFloat(runtimeMX.getSpecVersion());
-        if (Spec < 16 | runtimeMX.getSpecVersion().startsWith("1.")) {
-            logger.warn("\nDeprecation warning for Java Versions Below 16\nAs of 0.2.7, older java versions (Below 16) cannot be used with APU\nLearn more at https://github.com/Pugga12/APU_JE/discussions/18\nThis warning was displayed because you are running Java " + Spec);
-        }
         JDABuilder shardBuilder = JDABuilder.createDefault(CfgHandler.valString("token"));
         SQLiteDataSource.getConnection();
         shardBuilder.addEventListeners(new pingTest());
