@@ -43,8 +43,10 @@ public class core {
         } else {
             logger.error("Unable to read the system info");
         }
-        logger.info("Build Info: Version " + values.release_status + " " + values.version + " (" + values.stability + ", Built on JDA " + JDAInfo.VERSION + ") @ branch " + values.branch);
+        //logger.info("Build Info: Version " + values.release_status + " " + values.version + " (" + values.stability + ", Built on JDA " + JDAInfo.VERSION + ") @ branch " + values.branch);
+        logger.info("Build Info: " + values.release_status + " " + values.version + " (" + values.stability + ", Built on JDA " + JDAInfo.VERSION + ") @ branch " + values.branch);
         logger.info("Instance is now launching! Due to sharding, loading may take a while!");
+        Float Spec = Float.parseFloat(runtimeMX.getSpecVersion());
         JDABuilder shardBuilder = JDABuilder.createDefault(CfgHandler.valString("token"));
         SQLiteDataSource.getConnection();
         shardBuilder.addEventListeners(new pingTest());
@@ -83,7 +85,7 @@ public class core {
         cmds.addCommands(
                 new CommandData("check-my-permissions", "Check your ability to perform commands")
         );
-        GetOnlineData.fetchUpdates(values.update_server_endpoint);
+        //GetOnlineData.fetchUpdates(values.update_server_endpoint);
         cmds.queue();
     }
 }
