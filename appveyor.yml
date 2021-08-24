@@ -2,10 +2,8 @@ version: APVCI-{build}
 image: Ubuntu2004
 stack: jdk 16
 build_script:
-  - java -version
   - chmod +x gradlew
-  - ./gradlew buildDependents --no-daemon
-  - ./gradlew javadoc --no-daemon
+  - ./gradlew buildDependents javaDoc --no-daemon
 artifacts:
 - path: build\libs
 - path: build\docs\javadoc
