@@ -1,5 +1,5 @@
 # APU_JE
-A modular discord bot made in JDA 
+A in-development discord bot
 ## Branch Status
 Code in this branch is currently STABLE
 # Building/Running
