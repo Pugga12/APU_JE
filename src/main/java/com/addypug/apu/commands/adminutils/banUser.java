@@ -1,4 +1,4 @@
-package com.addypug.apu.functions.adminutils;
+package com.addypug.apu.commands.adminutils;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;

@@ -2,7 +2,7 @@
  * Permission Checker
  * Checks the permission levels of users
  */
-package com.addypug.apu.functions;
+package com.addypug.apu.commands;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;

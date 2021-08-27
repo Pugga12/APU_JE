@@ -31,13 +31,13 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: gradle buildDependents
       - run:
-          name: 'Set Version'
-          command: release-version=$(gradle release-version)
+          name: 'Build JAR'
+          command: gradle buildDependents
+
       - save_cache:
           paths:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
       - store_artifacts:
-              path: build/libs/APU-${release-version}-all.jar
+          path: build/libs

@@ -1,22 +1,24 @@
 package com.addypug.apu;
 
 
+import com.addypug.apu.commands.adminutils.shutdown;
+import com.addypug.apu.commands.music.join;
 import com.addypug.apu.data.CfgHandler;
-import com.addypug.apu.data.GetOnlineData;
 import com.addypug.apu.data.dbsubst.SQLiteDataSource;
-import com.addypug.apu.functions.adminutils.banUser;
-import com.addypug.apu.functions.check_my_permissions;
-import com.addypug.apu.functions.status;
-import com.addypug.apu.functions.adminutils.kickUser;
-import com.addypug.apu.functions.adminutils.unbanUser;
+import com.addypug.apu.commands.adminutils.banUser;
+import com.addypug.apu.commands.check_my_permissions;
+import com.addypug.apu.commands.status;
+import com.addypug.apu.commands.adminutils.kickUser;
+import com.addypug.apu.commands.adminutils.unbanUser;
 import com.addypug.apu.data.values;
-import com.addypug.apu.functions.test.pingTest;
+import com.addypug.apu.commands.test.pingTest;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.JDAInfo;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
+import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,22 +49,25 @@ public class core {
         logger.info("Build Info: " + values.release_status + " " + values.version + " (" + values.stability + ", Built on JDA " + JDAInfo.VERSION + ") @ branch " + values.branch);
         logger.info("Instance is now launching! Due to sharding, loading may take a while!");
         Float Spec = Float.parseFloat(runtimeMX.getSpecVersion());
-        JDABuilder shardBuilder = JDABuilder.createDefault(CfgHandler.valString("token"));
+        JDABuilder builder = JDABuilder.createDefault(CfgHandler.valString("token"));
         SQLiteDataSource.getConnection();
-        shardBuilder.addEventListeners(new pingTest());
-        shardBuilder.addEventListeners(new status());
-        shardBuilder.addEventListeners(new banUser());
-        shardBuilder.addEventListeners(new unbanUser());
-        shardBuilder.addEventListeners(new kickUser());
-        shardBuilder.addEventListeners(new check_my_permissions());
-        shardBuilder.setActivity(Activity.playing("Type / to see available Commands | v" + values.version));
+        builder.addEventListeners(new pingTest());
+        builder.addEventListeners(new status());
+        builder.addEventListeners(new banUser());
+        builder.addEventListeners(new unbanUser());
+        builder.addEventListeners(new kickUser());
+        builder.addEventListeners(new check_my_permissions());
+        builder.addEventListeners(new shutdown());
+        builder.addEventListeners(new join());
+        builder.enableCache(CacheFlag.VOICE_STATE);
+        builder.setActivity(Activity.playing("Type / to see available Commands | v" + values.version));
         Integer shardinteger = CfgHandler.valInt("shardint");
         logger.info("Beginning Sharding! Shards to initialize: " + shardinteger);
         for (int i = 0; i < shardinteger; i++)
-            shardBuilder.useSharding(i, shardinteger)
+            builder.useSharding(i, shardinteger)
                     .build();
         logger.info("Sharding complete!");
-        CommandListUpdateAction cmds = shardBuilder.build().updateCommands();
+        CommandListUpdateAction cmds = builder.build().updateCommands();
         cmds.addCommands(
                 new CommandData("status", "Get status about this bot")
         );
@@ -84,6 +89,9 @@ public class core {
         );
         cmds.addCommands(
                 new CommandData("check-my-permissions", "Check your ability to perform commands")
+        );
+        cmds.addCommands(
+          new CommandData("join-vc", "Makes the bot join your VC. You must be in a VC")
         );
         //GetOnlineData.fetchUpdates(values.update_server_endpoint);
         cmds.queue();
