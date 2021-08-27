@@ -17,7 +17,7 @@ public class shutdown extends ListenerAdapter {
                 ebd.setColor(Color.green);
                 ebd.addField("Bot is shutting down", "Shutdown command was sent", true);
                 event.getMessage().getChannel().sendMessageEmbeds(ebd.build()).queue();
-                event.getJDA().shutdownNow();
+                event.getJDA().shutdown();
             }
         }
     }
