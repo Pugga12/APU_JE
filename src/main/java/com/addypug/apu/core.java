@@ -1,17 +1,32 @@
+/*
+  Copyright © 2021 NotAddyPug
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ */
 package com.addypug.apu;
 
-
+import com.addypug.apu.commands.adminutils.banUser;
+import com.addypug.apu.commands.adminutils.kickUser;
 import com.addypug.apu.commands.adminutils.shutdown;
-import com.addypug.apu.commands.music.join;
+import com.addypug.apu.commands.adminutils.unbanUser;
+import com.addypug.apu.commands.check_my_permissions;
+import com.addypug.apu.commands.music.*;
+import com.addypug.apu.commands.status;
+import com.addypug.apu.commands.test.pingTest;
 import com.addypug.apu.data.CfgHandler;
 import com.addypug.apu.data.dbsubst.SQLiteDataSource;
-import com.addypug.apu.commands.adminutils.banUser;
-import com.addypug.apu.commands.check_my_permissions;
-import com.addypug.apu.commands.status;
-import com.addypug.apu.commands.adminutils.kickUser;
-import com.addypug.apu.commands.adminutils.unbanUser;
+import com.addypug.apu.data.dbsubst.guildDb;
 import com.addypug.apu.data.values;
-import com.addypug.apu.commands.test.pingTest;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.JDAInfo;
 import net.dv8tion.jda.api.entities.Activity;
@@ -45,8 +60,7 @@ public class core {
         } else {
             logger.error("Unable to read the system info");
         }
-        //logger.info("Build Info: Version " + values.release_status + " " + values.version + " (" + values.stability + ", Built on JDA " + JDAInfo.VERSION + ") @ branch " + values.branch);
-        logger.info("Build Info: " + values.release_status + " " + values.version + " (" + values.stability + ", Built on JDA " + JDAInfo.VERSION + ") @ branch " + values.branch);
+        logger.info("Build Info: " + values.release_status + " " + values.version + " on branch " + values.branch);
         logger.info("Instance is now launching! Due to sharding, loading may take a while!");
         Float Spec = Float.parseFloat(runtimeMX.getSpecVersion());
         JDABuilder builder = JDABuilder.createDefault(CfgHandler.valString("token"));
@@ -59,8 +73,16 @@ public class core {
         builder.addEventListeners(new check_my_permissions());
         builder.addEventListeners(new shutdown());
         builder.addEventListeners(new join());
+        builder.addEventListeners(new play());
+        builder.addEventListeners(new stop());
+        builder.addEventListeners(new skip());
+        builder.addEventListeners(new NowPlaying());
+        builder.addEventListeners(new queue());
+        builder.addEventListeners(new repeat());
+        builder.addEventListeners(new setVolume());
+        builder.addEventListeners(new leaveVC());
         builder.enableCache(CacheFlag.VOICE_STATE);
-        builder.setActivity(Activity.playing("Type / to see available Commands | v" + values.version));
+        builder.setActivity(Activity.listening("fire tracks"));
         Integer shardinteger = CfgHandler.valInt("shardint");
         logger.info("Beginning Sharding! Shards to initialize: " + shardinteger);
         for (int i = 0; i < shardinteger; i++)
@@ -91,9 +113,34 @@ public class core {
                 new CommandData("check-my-permissions", "Check your ability to perform commands")
         );
         cmds.addCommands(
-          new CommandData("join-vc", "Makes the bot join your VC. You must be in a VC")
+                new CommandData("join-vc", "Makes the bot join your VC. You must be in a VC")
         );
-        //GetOnlineData.fetchUpdates(values.update_server_endpoint);
+        cmds.addCommands(
+                new CommandData("play", "Play a YouTube Video")
+                        .addOptions(new OptionData(STRING, "url", "The YouTube URL to play").setRequired(true))
+        );
+        cmds.addCommands(
+                new CommandData("stop", "Stop the music and clear the queue")
+        );
+        cmds.addCommands(
+                new CommandData("skip", "Skip the current track")
+        );
+        cmds.addCommands(
+                new CommandData("nowplaying", "See what track is playing")
+        );
+        cmds.addCommands(
+                new CommandData("queue", "View the current queue")
+        );
+        cmds.addCommands(
+                new CommandData("repeat", "Repeat the current track")
+        );
+        cmds.addCommands(
+                new CommandData("volume", "Set the volume of the music")
+                        .addOptions(new OptionData(INTEGER, "percentage", "The percentage to set the volume to. Must be between 0 and 100%").setRequired(true))
+        );
+        cmds.addCommands(
+            new CommandData("leave-vc", "Makes the bot leave the VC it is in. Also clears the queue")
+        );
         cmds.queue();
     }
 }

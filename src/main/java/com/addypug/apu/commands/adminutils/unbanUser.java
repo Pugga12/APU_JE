@@ -1,3 +1,18 @@
+/**
+ * Copyright © 2021 NotAddyPug
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.addypug.apu.commands.adminutils;
 
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -13,6 +28,7 @@ import java.awt.*;
 
 public class unbanUser extends ListenerAdapter {
     Logger logger = LoggerFactory.getLogger(unbanUser.class);
+
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
         if (event.getName().equals("unban")) {
@@ -20,7 +36,7 @@ public class unbanUser extends ListenerAdapter {
             Member member = event.getOption("user").getAsMember();
             logger.debug("Valid command received");
             EmbedBuilder ebd = new EmbedBuilder();
-            event.deferReply().queue();
+            event.deferReply(false).queue();
             if (!event.getMember().hasPermission(Permission.BAN_MEMBERS)) {
                 ebd.setTitle("Error: Access Is Denied");
                 ebd.addField("Insufficient Permissions", "You do not have the permission to perform this command\nRequires Permission: Ban User (Code P415)", true);
