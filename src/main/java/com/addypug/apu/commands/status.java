@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
+import java.util.concurrent.TimeUnit;
 
 public class status extends ListenerAdapter {
     Logger logger = LoggerFactory.getLogger(status.class);
@@ -50,6 +51,7 @@ public class status extends ListenerAdapter {
                 long estSeconds = numberOfMinutes * 60;
                 uptimeInSeconds = uptimeInSeconds - estSeconds;
             }
+
             logger.debug("Made Uptime Calculations: " + numberOfDays + " days, " + numberOfHours + " hours, " + numberOfMinutes + " minutes, " + uptimeInSeconds + " seconds\n(" + uptime + " ms)");
             ebd.addField("Uptime", numberOfDays + " days, " + numberOfHours + " hours, " + numberOfMinutes + " minutes, " + uptimeInSeconds + " seconds\n(" + uptime + " ms)", true);
             event.getHook().sendMessageEmbeds(ebd.build()).queue();

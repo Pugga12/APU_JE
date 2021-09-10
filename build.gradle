@@ -4,7 +4,7 @@ plugins {
     id'com.github.johnrengelman.shadow' version '5.2.0'
 }
 mainClassName = 'com.addypug.apu.core'
-version '1.0.0'
+version '1.0.0_pv1'
 
 sourceCompatibility = targetCompatibility = 16
 
@@ -15,6 +15,11 @@ repositories {
 }
 
 dependencies {
+    implementation('commons-codec:commons-codec:1.15')
+    implementation('org.apache.httpcomponents:httpclient:5.1')
+    implementation('commons-codec:commons-coded:1.15')
+    implementation('commons-io:commons-io:2.7')
+    implementation ('com.fasterxml.jackson.core:jackson-databind:2.12.5')
     implementation ('net.dv8tion:JDA:4.3.0_310')
     implementation('ch.qos.logback:logback-classic:1.2.5')
     implementation (group: 'io.github.cdimascio', name: 'java-dotenv', version: '5.2.2')
