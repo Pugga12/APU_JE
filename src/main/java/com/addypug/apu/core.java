@@ -64,7 +64,7 @@ public class core {
         logger.info("Instance is now launching! Due to sharding, loading may take a while!");
         Float Spec = Float.parseFloat(runtimeMX.getSpecVersion());
         JDABuilder builder = JDABuilder.createDefault(CfgHandler.valString("token"));
-        SQLiteDataSource.getConnection();
+        //SQLiteDataSource.getConnection();
         builder.addEventListeners(new pingTest());
         builder.addEventListeners(new status());
         builder.addEventListeners(new banUser());

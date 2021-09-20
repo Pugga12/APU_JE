@@ -34,7 +34,7 @@ public class SQLiteDataSource {
 
     static {
         try {
-            final File dbFile = new File("apudb.db");
+            final File dbFile = new File("database.sqlite3");
 
             if (!dbFile.exists()) {
                 if (dbFile.createNewFile()) {
@@ -46,7 +46,7 @@ public class SQLiteDataSource {
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
-        config.setJdbcUrl("jdbc:sqlite:apudb.db");
+        config.setJdbcUrl("jdbc:sqlite:database.sqlite3");
         config.setConnectionTestQuery("SELECT 1");
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");

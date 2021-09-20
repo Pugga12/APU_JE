@@ -19,8 +19,10 @@ import com.addypug.apu.lavaplayer.PlayerManager;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.VoiceChannel;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.managers.AudioManager;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
@@ -36,21 +38,22 @@ public class play extends ListenerAdapter {
             final Member selfMember = event.getGuild().getSelfMember();
             final GuildVoiceState selfVoiceState = selfMember.getVoiceState();
             EmbedBuilder ebd = new EmbedBuilder();
-            if (!selfVoiceState.inVoiceChannel()) {
-                ebd.setColor(Color.blue);
-                ebd.addField("Unable To Play", "I am not connected to a voice channel\nConnect to a VC and run /join-vc, then try again", true);
-                event.getHook().editOriginalEmbeds(ebd.build()).queue();
-                return;
-            }
             final Member member = event.getMember();
             final GuildVoiceState memberVoiceState = member.getVoiceState();
+            Boolean playconnect = false;
+            if (!selfVoiceState.inVoiceChannel() && memberVoiceState.inVoiceChannel()) {
+                final AudioManager audioManager = event.getGuild().getAudioManager();
+                final VoiceChannel memberChannel = memberVoiceState.getChannel();
+                audioManager.openAudioConnection(memberChannel);
+                playconnect = true;
+            }
             if (!memberVoiceState.inVoiceChannel()) {
                 ebd.setColor(Color.blue);
                 ebd.addField("Unable To Play", "You must be in a VC", true);
                 event.getHook().editOriginalEmbeds(ebd.build()).queue();
                 return;
             }
-            if (!memberVoiceState.getChannel().equals(selfVoiceState.getChannel())) {
+            if (!memberVoiceState.getChannel().equals(selfVoiceState.getChannel()) && !playconnect) {
                 ebd.setColor(Color.blue);
                 ebd.addField("Unable To Play", "You must be in the same VC as me", true);
                 event.getHook().editOriginalEmbeds(ebd.build()).queue();

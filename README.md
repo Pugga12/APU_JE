@@ -1,5 +1,5 @@
 # AddyPug's Utilites
-[![CircleCI](https://circleci.com/gh/Pugga12/APU_JE.svg?style=svg)](https://app.circleci.com/pipelines/github/Pugga12/APU_JE) [![CodeQL](https://github.com/Pugga12/APU_JE/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Pugga12/APU_JE/actions/workflows/codeql-analysis.yml) \
+[![CircleCI](https://circleci.com/gh/Pugga12/APU_JE.svg?style=svg)](https://app.circleci.com/pipelines/github/Pugga12/APU_JE) [![Known Vulnerabilities](https://snyk.io/test/github/Pugga12/APU_JE/badge.svg)]() \
 A indev discord bot made in JDA
 # Download
 Please build it yourself with `gradlew buildDependents` or download from GitHub Releases\

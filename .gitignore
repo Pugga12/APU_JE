@@ -3,4 +3,4 @@
 /.env
 /.idea/
 /rejected/
-/apudb.db
+/database.sqlite3
