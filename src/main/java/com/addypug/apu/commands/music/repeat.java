@@ -61,11 +61,11 @@ public class repeat extends ListenerAdapter {
             musicManager.scheduler.isRepeating = newRepeating;
             ebd.setColor(Color.blue);
             if (newRepeating) {
-               ebd.addField("Playback Settings Changed", "Now repeating the current track", true);
+                ebd.addField("Playback Settings Changed", "Now repeating the current track", true);
             } else {
                 ebd.addField("Playback Settings Changed", "No longer repeating the current track", true);
             }
             event.getHook().editOriginalEmbeds(ebd.build()).queue();
-            }
         }
     }
+}

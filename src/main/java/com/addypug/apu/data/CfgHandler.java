@@ -16,7 +16,6 @@
 package com.addypug.apu.data;
 
 import io.github.cdimascio.dotenv.Dotenv;
-import net.dv8tion.jda.annotations.ForRemoval;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,6 +23,7 @@ import org.slf4j.LoggerFactory;
 public class CfgHandler {
     static Logger logger = LoggerFactory.getLogger(CfgHandler.class);
     private static final Dotenv dotenv = Dotenv.load();
+
     public static String valString(String key) {
         logger.debug("Retrieving String value from .env file with key " + key);
         return dotenv.get(key);

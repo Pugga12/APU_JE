@@ -64,7 +64,7 @@ public class setVolume extends ListenerAdapter {
                 ebd.addField("Volume Greater than Max", "The max volume is 100%. Please set the volume to 100% or lower", true);
                 event.getHook().editOriginalEmbeds(ebd.build()).queue();
                 return;
-            } else if(volume < 0) {
+            } else if (volume < 0) {
                 ebd.setColor(Color.blue);
                 ebd.addField("Volume Too Low", "You set a volume that is below the minimum of 0%. Please set the volume to 0% or greater", true);
                 event.getHook().editOriginalEmbeds(ebd.build()).queue();

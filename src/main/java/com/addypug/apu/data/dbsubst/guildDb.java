@@ -17,12 +17,12 @@ package com.addypug.apu.data.dbsubst;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class guildDb {
     /**
      * Enters a server into the guild_settings table
+     *
      * @param id The ID of the guild
      */
 
@@ -32,5 +32,21 @@ public class guildDb {
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, id);
         statement.executeUpdate();
+    }
+
+    /**
+     * Adds a mute to the proper guild in the DB
+     * @param userId The ID of the user being warned
+     * @param guildId The ID of the guild that the user is being warned
+     * @param reason The reason the user is being warned
+     */
+    public static void addWarn(String userId, String guildId, String reason) throws SQLException {
+        Connection connection = SQLiteDataSource.getConnection();
+        String createTable = "CREATE TABLE IF NOT EXISTS warns_" + guildId + "(uid INTEGER PRIMARY KEY NOT NULL, reason STRING)";
+        PreparedStatement createWarnsTable = connection.prepareStatement(createTable);
+        createWarnsTable.execute();
+        String userWarn = "INSERT into warns_" + guildId + "(uid, reason) values('" + userId + "' , '" + reason + "')";
+        PreparedStatement warn = connection.prepareStatement(userWarn);
+        warn.executeUpdate();
     }
 }

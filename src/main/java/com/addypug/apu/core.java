@@ -15,20 +15,15 @@
  */
 package com.addypug.apu;
 
-import com.addypug.apu.commands.adminutils.banUser;
-import com.addypug.apu.commands.adminutils.kickUser;
-import com.addypug.apu.commands.adminutils.shutdown;
-import com.addypug.apu.commands.adminutils.unbanUser;
+import com.addypug.apu.commands.adminutils.*;
 import com.addypug.apu.commands.check_my_permissions;
 import com.addypug.apu.commands.music.*;
 import com.addypug.apu.commands.status;
 import com.addypug.apu.commands.test.pingTest;
 import com.addypug.apu.data.CfgHandler;
 import com.addypug.apu.data.dbsubst.SQLiteDataSource;
-import com.addypug.apu.data.dbsubst.guildDb;
 import com.addypug.apu.data.values;
 import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.JDAInfo;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
@@ -44,8 +39,19 @@ import java.lang.management.RuntimeMXBean;
 import static net.dv8tion.jda.api.interactions.commands.OptionType.*;
 
 public class core {
+    /**
+     * DMP controls access to music features.
+     * If the --disable-dmp flag is found on startup, music services may not function
+     */
+    public static Boolean enable_dmp = true;
     public static void main(String[] arguments) throws Exception {
         Logger logger = LoggerFactory.getLogger(core.class);
+        if (arguments.length != 0) {
+            if (arguments[0].equals("--disable-dmp")) {
+                logger.info("DMP is now disabled.");
+                enable_dmp = false;
+            }
+        }
         RuntimeMXBean runtimeMX = ManagementFactory.getRuntimeMXBean();
         OperatingSystemMXBean osMX = ManagementFactory.getOperatingSystemMXBean();
         if (runtimeMX != null && osMX != null) {
@@ -64,7 +70,7 @@ public class core {
         logger.info("Instance is now launching! Due to sharding, loading may take a while!");
         Float Spec = Float.parseFloat(runtimeMX.getSpecVersion());
         JDABuilder builder = JDABuilder.createDefault(CfgHandler.valString("token"));
-        //SQLiteDataSource.getConnection();
+        SQLiteDataSource.getConnection();
         builder.addEventListeners(new pingTest());
         builder.addEventListeners(new status());
         builder.addEventListeners(new banUser());
@@ -81,6 +87,7 @@ public class core {
         builder.addEventListeners(new repeat());
         builder.addEventListeners(new setVolume());
         builder.addEventListeners(new leaveVC());
+        builder.addEventListeners(new warnUser());
         builder.enableCache(CacheFlag.VOICE_STATE);
         builder.setActivity(Activity.listening("fire tracks"));
         Integer shardinteger = CfgHandler.valInt("shardint");
@@ -139,7 +146,12 @@ public class core {
                         .addOptions(new OptionData(INTEGER, "percentage", "The percentage to set the volume to. Must be between 0 and 100%").setRequired(true))
         );
         cmds.addCommands(
-            new CommandData("leave-vc", "Makes the bot leave the VC it is in. Also clears the queue")
+                new CommandData("leave-vc", "Makes the bot leave the VC it is in. Also clears the queue")
+        );
+        cmds.addCommands(
+          new CommandData("warn", "Warns a user. Also sends a message to their DMs")
+                  .addOptions(new OptionData(USER, "user", "The user to warn").setRequired(true))
+                  .addOptions(new OptionData(STRING, "reason", "The reason why you are warning the user").setRequired(true))
         );
         cmds.queue();
     }

@@ -21,7 +21,7 @@ import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 public class GuildMusicManager {
     public final AudioPlayer audioPlayer;
     public final TrackScheduler scheduler;
-    private AudioPlayerSendHandler sendHandler;
+    private final AudioPlayerSendHandler sendHandler;
 
     public GuildMusicManager(AudioPlayerManager manager) {
         this.audioPlayer = manager.createPlayer();
