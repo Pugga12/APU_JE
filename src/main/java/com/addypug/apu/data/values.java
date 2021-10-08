@@ -10,4 +10,5 @@ public class values {
     public static final String release_json = "\"1.0.1\"";
     public static final String database_revision = "DSR8.5";
     public static final String release_status = "Release";
+    public static final String build = "202.1008.30";
 }

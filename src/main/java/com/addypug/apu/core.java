@@ -16,7 +16,6 @@
 package com.addypug.apu;
 
 import com.addypug.apu.commands.adminutils.*;
-import com.addypug.apu.commands.check_my_permissions;
 import com.addypug.apu.commands.music.*;
 import com.addypug.apu.commands.status;
 import com.addypug.apu.commands.test.pingTest;
@@ -76,7 +75,7 @@ public class core {
         builder.addEventListeners(new banUser());
         builder.addEventListeners(new unbanUser());
         builder.addEventListeners(new kickUser());
-        builder.addEventListeners(new check_my_permissions());
+        //builder.addEventListeners(new check_my_permissions());
         builder.addEventListeners(new shutdown());
         builder.addEventListeners(new join());
         builder.addEventListeners(new play());
@@ -115,9 +114,6 @@ public class core {
                 new CommandData("kick", "Kick a user")
                         .addOptions(new OptionData(USER, "user", "The user to kick")
                                 .setRequired(true))
-        );
-        cmds.addCommands(
-                new CommandData("check-my-permissions", "Check your ability to perform commands")
         );
         cmds.addCommands(
                 new CommandData("join-vc", "Makes the bot join your VC. You must be in a VC")

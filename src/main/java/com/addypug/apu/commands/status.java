@@ -18,7 +18,6 @@ package com.addypug.apu.commands;
 import com.addypug.apu.ShardingTools;
 import com.addypug.apu.data.values;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.JDAInfo;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.slf4j.Logger;
@@ -27,7 +26,6 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
-import java.util.concurrent.TimeUnit;
 
 public class status extends ListenerAdapter {
     Logger logger = LoggerFactory.getLogger(status.class);
@@ -40,7 +38,7 @@ public class status extends ListenerAdapter {
             EmbedBuilder ebd = new EmbedBuilder();
             ebd.setColor(Color.red);
             ebd.setTitle("Status");
-            ebd.addField("Build Info", "APU " + values.release_status + " " + values.version + "\n" + "\nBuilt on JDA " + JDAInfo.VERSION + "\nShard " + ShardingTools.getNonZeroIndexedShardId(event.getJDA()) + "/" + event.getJDA().getShardInfo().getShardTotal(), true);
+            ebd.addField("Build Info", "APU " + values.release_status + " " + values.version + "\nBuild " + values.build + "\nOn Shard: " + ShardingTools.getNonZeroIndexedShardId(event.getJDA()) + "/" + event.getJDA().getShardInfo().getShardTotal(), true);
             RuntimeMXBean runtimeMX = ManagementFactory.getRuntimeMXBean();
             long uptime = runtimeMX.getUptime();
             long uptimeInSeconds = uptime / 1000;

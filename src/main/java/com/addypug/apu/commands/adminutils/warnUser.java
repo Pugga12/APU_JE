@@ -7,11 +7,15 @@ import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.sql.SQLException;
 
 public class warnUser extends ListenerAdapter {
+    Logger logger = LoggerFactory.getLogger(warnUser.class);
+
     @Override
     public void onSlashCommand(@NotNull SlashCommandEvent event) {
         if (event.getGuild() == null) return;
@@ -34,7 +38,7 @@ public class warnUser extends ListenerAdapter {
             try {
                 guildDb.addWarn(user.getId(), event.getGuild().getId(), reason);
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
             }
             event.getHook().editOriginalEmbeds(guild_ebd.build()).queue();
 

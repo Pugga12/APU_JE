@@ -15,6 +15,8 @@
  */
 package com.addypug.apu.commands;
 
+import net.dv8tion.jda.annotations.DeprecatedSince;
+import net.dv8tion.jda.annotations.ForRemoval;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
@@ -28,9 +30,11 @@ import java.awt.*;
  * Permission Checker
  * Checks the permission levels of users
  */
+@Deprecated
+@DeprecatedSince("1.1-2021.1008.30")
+@ForRemoval(deadline = "1.2")
 public class check_my_permissions extends ListenerAdapter {
     Logger logger = LoggerFactory.getLogger(check_my_permissions.class);
-
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
         if (event.getGuild() == null) return;
