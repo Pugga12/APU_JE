@@ -30,6 +30,7 @@ import java.awt.*;
 public class skip extends ListenerAdapter {
     @Override
     public void onSlashCommand(@Nonnull SlashCommandEvent event) {
+        if (!event.isFromGuild()) return;
         if (event.getName().equals("skip")) {
             event.deferReply(false).queue();
             final Member selfMember = event.getGuild().getSelfMember();

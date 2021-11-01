@@ -30,6 +30,7 @@ import java.awt.*;
 public class setVolume extends ListenerAdapter {
     @Override
     public void onSlashCommand(@Nonnull SlashCommandEvent event) {
+        if (!event.isFromGuild()) return;
         if (event.getName().equals("volume")) {
             event.deferReply(false).queue();
             Integer volume = Integer.parseInt(event.getOption("percentage").toString());

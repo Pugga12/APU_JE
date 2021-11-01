@@ -20,8 +20,8 @@ import com.addypug.apu.commands.music.*;
 import com.addypug.apu.commands.status;
 import com.addypug.apu.commands.test.pingTest;
 import com.addypug.apu.data.CfgHandler;
-import com.addypug.apu.data.dbsubst.SQLiteDataSource;
-import com.addypug.apu.data.values;
+import com.addypug.apu.data.Constants;
+import com.addypug.apu.dbsubst.SQLiteDataSource;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
@@ -65,7 +65,7 @@ public class core {
         } else {
             logger.error("Unable to read the system info");
         }
-        logger.info("Build Info: " + values.release_status + " " + values.version + " on branch " + values.branch);
+        logger.info("Version " + Constants.version + ", Build " + Constants.build);
         logger.info("Instance is now launching! Due to sharding, loading may take a while!");
         Float Spec = Float.parseFloat(runtimeMX.getSpecVersion());
         JDABuilder builder = JDABuilder.createDefault(CfgHandler.valString("token"));
@@ -75,7 +75,6 @@ public class core {
         builder.addEventListeners(new banUser());
         builder.addEventListeners(new unbanUser());
         builder.addEventListeners(new kickUser());
-        //builder.addEventListeners(new check_my_permissions());
         builder.addEventListeners(new shutdown());
         builder.addEventListeners(new join());
         builder.addEventListeners(new play());
@@ -87,6 +86,7 @@ public class core {
         builder.addEventListeners(new setVolume());
         builder.addEventListeners(new leaveVC());
         builder.addEventListeners(new warnUser());
+        builder.addEventListeners(new setSlowmode());
         builder.enableCache(CacheFlag.VOICE_STATE);
         builder.setActivity(Activity.listening("fire tracks"));
         Integer shardinteger = CfgHandler.valInt("shardint");
@@ -149,6 +149,10 @@ public class core {
                   .addOptions(new OptionData(USER, "user", "The user to warn").setRequired(true))
                   .addOptions(new OptionData(STRING, "reason", "The reason why you are warning the user").setRequired(true))
         );
+        cmds.addCommands(
+                new CommandData("sl", "Sets the slowmode for this channel").addOptions(new OptionData(INTEGER, "secs", "The amount to set slowmode to, in second").setRequired(true))
+        );
+        cmds.addCommands(new CommandData("shutdown", "A quick and dirty way to shutdown the bot. "));
         cmds.queue();
     }
 }

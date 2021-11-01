@@ -15,8 +15,7 @@
  */
 package com.addypug.apu.commands;
 
-import com.addypug.apu.ShardingTools;
-import com.addypug.apu.data.values;
+import com.addypug.apu.data.Constants;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -25,6 +24,7 @@ import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.lang.management.ManagementFactory;
+import java.lang.management.OperatingSystemMXBean;
 import java.lang.management.RuntimeMXBean;
 
 public class status extends ListenerAdapter {
@@ -36,24 +36,25 @@ public class status extends ListenerAdapter {
             logger.debug("Valid command received");
             event.deferReply(false).queue();
             EmbedBuilder ebd = new EmbedBuilder();
-            ebd.setColor(Color.red);
             ebd.setTitle("Status");
-            ebd.addField("Build Info", "APU " + values.release_status + " " + values.version + "\nBuild " + values.build + "\nOn Shard: " + ShardingTools.getNonZeroIndexedShardId(event.getJDA()) + "/" + event.getJDA().getShardInfo().getShardTotal(), true);
-            RuntimeMXBean runtimeMX = ManagementFactory.getRuntimeMXBean();
-            long uptime = runtimeMX.getUptime();
-            long uptimeInSeconds = uptime / 1000;
-            long numberOfMinutes = uptimeInSeconds / 60;
-            long numberOfHours = numberOfMinutes / 60;
-            long numberOfDays = numberOfHours / 24;
-            if (uptimeInSeconds > 60) {
-                long estSeconds = numberOfMinutes * 60;
-                uptimeInSeconds = uptimeInSeconds - estSeconds;
-            }
-
-            logger.debug("Made Uptime Calculations: " + numberOfDays + " days, " + numberOfHours + " hours, " + numberOfMinutes + " minutes, " + uptimeInSeconds + " seconds\n(" + uptime + " ms)");
-            ebd.addField("Uptime", numberOfDays + " days, " + numberOfHours + " hours, " + numberOfMinutes + " minutes, " + uptimeInSeconds + " seconds\n(" + uptime + " ms)", true);
-            event.getHook().sendMessageEmbeds(ebd.build()).queue();
-            logger.debug("Submitted response");
+            RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean();
+            final Runtime runtime = Runtime.getRuntime();
+            OperatingSystemMXBean OSMX = ManagementFactory.getOperatingSystemMXBean();
+            ebd.setDescription("Version " + Constants.release_status + " " + Constants.version + " (Build " + Constants.build + ")\n[GitHub](https://github.com/Pugga12/APU_JE)\nTop.gg (N/A)\nVote (N/A)\n[Latest Release](https://github.com/Pugga12/APU_JE/releases/latest)" );
+            ebd.addField("Memory", convert(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) + " / " + convert(Runtime.getRuntime().totalMemory()), false);
+            ebd.setColor(Color.green);
+            event.getHook().editOriginalEmbeds(ebd.build()).queue();
         }
+    }
+    public String convert(long bytes) {
+        String result = "";
+        if (bytes >= 1000000) {
+            result = bytes / 1000000 + " mb";
+        } else if (bytes >= 1000000000) {
+            result = bytes / 1000000000 + " gb";
+        } else {
+            result = bytes + " b";
+        }
+        return result;
     }
 }

@@ -32,6 +32,7 @@ import java.awt.*;
 public class NowPlaying extends ListenerAdapter {
     @Override
     public void onSlashCommand(@Nonnull SlashCommandEvent event) {
+        if (!event.isFromGuild()) return;
         if (event.getName().equals("nowplaying")) {
             event.deferReply(false).queue();
             final Member selfMember = event.getGuild().getSelfMember();

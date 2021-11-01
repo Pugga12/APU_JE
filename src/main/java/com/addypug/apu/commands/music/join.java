@@ -30,6 +30,7 @@ import java.awt.*;
 public class join extends ListenerAdapter {
     @Override
     public void onSlashCommand(@Nonnull SlashCommandEvent event) {
+        if (!event.isFromGuild()) return;
         if (event.getName().equals("join-vc")) {
             event.deferReply(false).queue();
             final TextChannel channel = event.getTextChannel();

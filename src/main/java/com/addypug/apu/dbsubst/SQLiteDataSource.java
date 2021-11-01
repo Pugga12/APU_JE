@@ -13,9 +13,9 @@
   See the License for the specific language governing permissions and
   limitations under the License.
  */
-package com.addypug.apu.data.dbsubst;
+package com.addypug.apu.dbsubst;
 
-import com.addypug.apu.data.values;
+import com.addypug.apu.data.Constants;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.slf4j.Logger;
@@ -58,9 +58,9 @@ public class SQLiteDataSource {
             // language=SQLite
             statement.execute("CREATE TABLE IF NOT EXISTS guild_settings (guildId VARCHAR(20) PRIMARY KEY);");
             statement.execute("CREATE TABLE IF NOT EXISTS metadata(id INTEGER PRIMARY KEY AUTOINCREMENT, datatype STRING NOT NULL, value);");
-            statement.execute("INSERT or IGNORE INTO metadata(id, datatype, value) VALUES (1, 'Database_Schema', '" + values.database_revision + "')");
-            statement.execute("INSERT OR IGNORE INTO metadata(id, datatype, value) VALUES (2, 'initialv_version',  '" + values.version + "')");
-            statement.execute("INSERT OR IGNORE INTO metadata(id, datatype, value) VALUES (3, 'initialv_release_status', '" + values.release_status + "')");
+            statement.execute("INSERT or IGNORE INTO metadata(id, datatype, value) VALUES (1, 'Database_Schema', '" + Constants.database_revision + "')");
+            statement.execute("INSERT OR IGNORE INTO metadata(id, datatype, value) VALUES (2, 'initialv_version',  '" + Constants.version + "')");
+            statement.execute("INSERT OR IGNORE INTO metadata(id, datatype, value) VALUES (3, 'initialv_release_status', '" + Constants.release_status + "')");
             logger.info("Database Tables Initialized");
         } catch (SQLException e) {
             logger.error(e.getMessage());

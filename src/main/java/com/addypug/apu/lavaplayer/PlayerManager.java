@@ -16,6 +16,7 @@
 package com.addypug.apu.lavaplayer;
 
 import com.addypug.apu.commands.music.queue;
+import com.addypug.apu.data.Constants;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
@@ -93,10 +94,19 @@ public class PlayerManager {
 
             @Override
             public void loadFailed(FriendlyException exception) {
-                EmbedBuilder ebd = new EmbedBuilder();
-                ebd.setColor(Color.blue);
-                ebd.addField("Failed To Load Track", "Failed to load track at " + url, true);
-                ebd.setFooter("Try again or submit a issue at https://github.com/Pugga12/APU_JE/issues");
+                if (exception.getMessage().contains(Constants.E1429_Trip_String)) {
+                    EmbedBuilder ebd = new EmbedBuilder();
+                    ebd.setColor(Color.blue);
+                    ebd.setTitle("IP Banned by Youtube (E1429)", "https://www.addypug.com/support/apu/common-error-codes#h.63rvrcz38v");
+                    ebd.setDescription(Constants.E1429_Trip_String);
+                    slashcommand.getHook().editOriginalEmbeds(ebd.build()).queue();
+                } else{
+                    EmbedBuilder ebd = new EmbedBuilder();
+                    ebd.setColor(Color.blue);
+                    ebd.addField("Failed To Load Track", "Failed to load track at " + url, true);
+                    ebd.setFooter("Try again or submit a issue at https://github.com/Pugga12/APU_JE/issues");
+                    slashcommand.getHook().editOriginalEmbeds(ebd.build()).queue();
+                }
             }
         });
     }

@@ -38,6 +38,7 @@ public class queue extends ListenerAdapter {
 
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
+        if (!event.isFromGuild()) return;
         if (event.getName().equals("queue")) {
             event.deferReply(false).queue();
             final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(event.getGuild());

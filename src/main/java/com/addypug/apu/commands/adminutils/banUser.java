@@ -31,6 +31,8 @@ public class banUser extends ListenerAdapter {
 
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
+        if (!event.isFromGuild()) return;
+
         if (event.getName().equals("ban")) {
             User user = event.getOption("user").getAsUser();
             Member member = event.getOption("user").getAsMember();
@@ -39,7 +41,7 @@ public class banUser extends ListenerAdapter {
             EmbedBuilder ebd = new EmbedBuilder();
             event.deferReply(false).queue();
             if (!event.getMember().hasPermission(Permission.BAN_MEMBERS)) {
-                ebd.setTitle("Error: Access Is Denied");
+                ebd.setTitle("Access Denied (E0403)", "https://www.addypug.com/support/apu/common-error-codes#h.1wr3d2aa2r7t");
                 ebd.addField("Insufficient Permissions", "You do not have the permission to perform this command\nRequires Permission: Ban User (Code P415)", true);
                 ebd.setColor(Color.blue);
                 ebd.setFooter("Please do not file a issue for this error. It will be closed");
@@ -47,7 +49,7 @@ public class banUser extends ListenerAdapter {
             } else {
                 Member selfMember = event.getGuild().getSelfMember();
                 if (!selfMember.hasPermission(Permission.BAN_MEMBERS)) {
-                    ebd.setTitle("Error: Access Is Denied");
+                    ebd.setTitle("Access Denied (E0403)", "https://www.addypug.com/support/apu/common-error-codes#h.1wr3d2aa2r7t");
                     ebd.addField("Insufficient Permissions", "I do not have enough permissions to ban this member\nRequired Permissions: Ban User (Code P415-2)", true);
                     ebd.setColor(Color.blue);
                     ebd.setFooter("Please do not file a issue for this error. It will be closed");
@@ -62,7 +64,7 @@ public class banUser extends ListenerAdapter {
                 }
                 Integer ddoverflow = deldaysint - 7;
                 if (deldaysint > 7) {
-                    ebd.setTitle("Error: Argument Over Maximum Value");
+                    ebd.setTitle("Error: Argument Out Of Bounds (E0452)");
                     ebd.setColor(Color.blue);
                     ebd.addField("Argument 'deldays' is > 7", "deldays is " + ddoverflow + " days greater than the maximum value of 7 days (Code P7)", true);
                     ebd.setFooter("Please do not file a issue for this error. It will be closed");

@@ -15,6 +15,7 @@ import java.awt.*;
 public class leaveVC extends ListenerAdapter {
     @Override
     public void onSlashCommand(@Nonnull SlashCommandEvent event) {
+        if (!event.isFromGuild()) return;
         if (event.getName().equals("leave-vc")) {
             event.deferReply(false).queue();
             final Member selfMember = event.getGuild().getSelfMember();

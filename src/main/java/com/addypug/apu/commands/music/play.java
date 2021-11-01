@@ -32,6 +32,7 @@ import java.net.URISyntaxException;
 public class play extends ListenerAdapter {
     @Override
     public void onSlashCommand(@Nonnull SlashCommandEvent event) {
+        if (!event.isFromGuild()) return;
         if (event.getName().equals("play")) {
             event.deferReply(false).queue();
             String url = event.getOption("url").getAsString();
