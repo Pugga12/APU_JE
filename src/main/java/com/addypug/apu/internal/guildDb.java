@@ -13,7 +13,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
  */
-package com.addypug.apu.dbsubst;
+package com.addypug.apu.internal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -42,7 +42,7 @@ public class guildDb {
      */
     public static void addWarn(String userId, String guildId, String reason) throws SQLException {
         Connection connection = SQLiteDataSource.getConnection();
-        String createTable = "CREATE TABLE IF NOT EXISTS warns_" + guildId + "(aid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, userId STRING NOT NULL, reason STRING)";
+        String createTable = "CREATE TABLE IF NOT EXISTS warns_" + guildId + "(aid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, uid STRING NOT NULL, reason STRING)";
         PreparedStatement createWarnsTable = connection.prepareStatement(createTable);
         createWarnsTable.execute();
         String userWarn = "INSERT into warns_" + guildId + "(uid, reason) values('" + userId + "' , '" + reason + "')";

@@ -15,8 +15,8 @@
  */
 package com.addypug.apu.commands.music;
 
-import com.addypug.apu.lavaplayer.GuildMusicManager;
-import com.addypug.apu.lavaplayer.PlayerManager;
+import com.addypug.apu.internal.lavaplayer.GuildMusicManager;
+import com.addypug.apu.internal.lavaplayer.PlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
@@ -71,8 +71,6 @@ public class setVolume extends ListenerAdapter {
                 event.getHook().editOriginalEmbeds(ebd.build()).queue();
                 return;
             }
-
-
             ebd.setColor(Color.blue);
             ebd.addField("Volume Set", "Volume was set to " + volume + "%", true);
             event.getHook().editOriginalEmbeds(ebd.build()).queue();

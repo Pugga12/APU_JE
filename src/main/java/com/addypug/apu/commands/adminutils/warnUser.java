@@ -1,6 +1,6 @@
 package com.addypug.apu.commands.adminutils;
 
-import com.addypug.apu.dbsubst.guildDb;
+import com.addypug.apu.internal.guildDb;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.User;

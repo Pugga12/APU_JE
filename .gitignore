@@ -2,6 +2,4 @@
 /build/
 /.env
 /.idea/
-/rejected/
 /database.sqlite3
-/src/main/resources/dataconverter.xml

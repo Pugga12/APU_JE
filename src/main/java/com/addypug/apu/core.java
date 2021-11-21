@@ -21,7 +21,7 @@ import com.addypug.apu.commands.status;
 import com.addypug.apu.commands.test.pingTest;
 import com.addypug.apu.data.CfgHandler;
 import com.addypug.apu.data.Constants;
-import com.addypug.apu.dbsubst.SQLiteDataSource;
+import com.addypug.apu.internal.SQLiteDataSource;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;

@@ -13,7 +13,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
  */
-package com.addypug.apu.dbsubst;
+package com.addypug.apu.internal;
 
 import com.addypug.apu.data.Constants;
 import com.zaxxer.hikari.HikariConfig;
@@ -44,7 +44,7 @@ public class SQLiteDataSource {
                 }
             }
         } catch (IOException e) {
-            logger.error(e.getMessage());
+            e.printStackTrace();
         }
         config.setJdbcUrl("jdbc:sqlite:database.sqlite3");
         config.setConnectionTestQuery("SELECT 1");

@@ -16,7 +16,7 @@
 package com.addypug.apu.commands.adminutils;
 
 import com.addypug.apu.data.CfgHandler;
-import com.addypug.apu.dbsubst.SQLiteDataSource;
+import com.addypug.apu.internal.SQLiteDataSource;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Emoji;
 import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;

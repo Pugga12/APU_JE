@@ -15,8 +15,8 @@
  */
 package com.addypug.apu.commands.music;
 
-import com.addypug.apu.lavaplayer.GuildMusicManager;
-import com.addypug.apu.lavaplayer.PlayerManager;
+import com.addypug.apu.internal.lavaplayer.GuildMusicManager;
+import com.addypug.apu.internal.lavaplayer.PlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;

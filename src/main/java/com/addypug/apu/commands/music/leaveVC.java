@@ -1,7 +1,7 @@
 package com.addypug.apu.commands.music;
 
-import com.addypug.apu.lavaplayer.GuildMusicManager;
-import com.addypug.apu.lavaplayer.PlayerManager;
+import com.addypug.apu.internal.lavaplayer.GuildMusicManager;
+import com.addypug.apu.internal.lavaplayer.PlayerManager;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
@@ -46,9 +46,8 @@ public class leaveVC extends ListenerAdapter {
 
             musicManager.scheduler.player.stopTrack();
             musicManager.scheduler.queue.clear();
-
+            musicManager.audioPlayer.destroy();
             audioManager.closeAudioConnection();
-
             ebd.setColor(Color.green);
             ebd.addField("I left the voice channel", "Cleaned the queue and left the voice channel", true);
             event.getHook().editOriginalEmbeds(ebd.build()).queue();

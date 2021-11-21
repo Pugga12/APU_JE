@@ -15,8 +15,8 @@
  */
 package com.addypug.apu.commands.music;
 
-import com.addypug.apu.lavaplayer.GuildMusicManager;
-import com.addypug.apu.lavaplayer.PlayerManager;
+import com.addypug.apu.internal.lavaplayer.GuildMusicManager;
+import com.addypug.apu.internal.lavaplayer.PlayerManager;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
