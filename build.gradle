@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
     implementation('commons-codec:commons-codec:1.15')
-    implementation('commons-io:commons-io:2.7')
+    implementation('commons-io:commons-io:2.11.0')
     implementation ('net.dv8tion:JDA:4.4.0_351')
     implementation('ch.qos.logback:logback-classic:1.2.7')
     implementation (group: 'io.github.cdimascio', name: 'java-dotenv', version: '5.2.2')
