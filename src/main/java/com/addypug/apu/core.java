@@ -38,19 +38,8 @@ import java.lang.management.RuntimeMXBean;
 import static net.dv8tion.jda.api.interactions.commands.OptionType.*;
 
 public class core {
-    /**
-     * DMP controls access to music features.
-     * If the --disable-dmp flag is found on startup, music services may not function
-     */
-    public static Boolean enable_dmp = true;
     public static void main(String[] arguments) throws Exception {
         Logger logger = LoggerFactory.getLogger(core.class);
-        if (arguments.length != 0) {
-            if (arguments[0].equals("--disable-dmp")) {
-                logger.info("DMP is now disabled.");
-                enable_dmp = false;
-            }
-        }
         RuntimeMXBean runtimeMX = ManagementFactory.getRuntimeMXBean();
         OperatingSystemMXBean osMX = ManagementFactory.getOperatingSystemMXBean();
         if (runtimeMX != null && osMX != null) {
