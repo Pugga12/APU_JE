@@ -39,6 +39,12 @@ import static net.dv8tion.jda.api.interactions.commands.OptionType.*;
 
 public class core {
     public static void main(String[] arguments) throws Exception {
+        // Makes APU run on single-core linux machines
+        final int cores = Runtime.getRuntime().availableProcessors();
+        if (cores <= 1) {
+            System.out.println("Available Cores \"" + cores + "\", setting Parallelism Flag");
+            System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "1");
+        }
         Logger logger = LoggerFactory.getLogger(core.class);
         RuntimeMXBean runtimeMX = ManagementFactory.getRuntimeMXBean();
         OperatingSystemMXBean osMX = ManagementFactory.getOperatingSystemMXBean();

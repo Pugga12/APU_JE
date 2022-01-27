@@ -36,13 +36,14 @@ public class status extends ListenerAdapter {
             logger.debug("Valid command received");
             event.deferReply(false).queue();
             EmbedBuilder ebd = new EmbedBuilder();
-            ebd.setTitle("Status");
+            ebd.setTitle("AddyPug's Utilities");
             RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean();
             final Runtime runtime = Runtime.getRuntime();
             OperatingSystemMXBean OSMX = ManagementFactory.getOperatingSystemMXBean();
-            ebd.setDescription("Version " + Constants.release_status + " " + Constants.version + " (Build " + Constants.build + ")\n[GitHub](https://github.com/Pugga12/APU_JE)\nTop.gg (N/A)\nVote (N/A)\n[Latest Release](https://github.com/Pugga12/APU_JE/releases/latest)" );
+            ebd.setDescription("Build " + Constants.build + "\n[GitHub](https://github.com/Pugga12/APU_JE)\nTop.gg (N/A)\nVote (N/A)\n[Latest Release](https://github.com/Pugga12/APU_JE/releases/latest)");
             ebd.addField("Memory", convert(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) + " / " + convert(Runtime.getRuntime().totalMemory()), false);
             ebd.setColor(Color.green);
+            ebd.setFooter("Made by NotAddyPug", "https://cdn.discordapp.com/avatars/642495819202691082/596925f268e2eef9e3fc1c3fe5e8e3d0.webp");
             event.getHook().editOriginalEmbeds(ebd.build()).queue();
         }
     }
